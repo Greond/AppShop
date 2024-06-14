@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views ="clr-namespace:AppShop.Views"
+             x:Class="AppShop.AppShell"
+             FlyoutBackgroundColor="{StaticResource BackColor}"
+             Shell.BackgroundColor="{StaticResource BackColor}"
+             Shell.ItemTemplate="{StaticResource FlyoutTemplate}"
+             Shell.MenuItemTemplate="{StaticResource FlyoutTemplate}"
+       
+             Shell.FlyoutHeaderTemplate ="{StaticResource MenuTitle}"
+             Shell.NavBarHasShadow="False"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutWidth="250"
+
+            
+       >
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ThemeColorWhite">#E0E0E0</Color>
+            <Color x:Key="ThemeColorBlack">#0E0F20</Color>
+            <Color x:Key="ShellTextColor">#0E0F20</Color>
+
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ThemeColorWhite}"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource ThemeColorBlack}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#696969"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource ThemeColorBlack}"/>
+            </Style>
+            
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}"/>
+
+            <DataTemplate x:Key="FlyoutTemplate">
+                <Grid x:Name="FlyoutItemLayout"
+          HeightRequest="{x:OnPlatform Android=50}"
+          ColumnSpacing="{x:OnPlatform UWP=0}"
+          RowSpacing="{x:OnPlatform UWP=0}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                    Value="{x:OnPlatform Android=#F2F2F2, iOS=#F2F2F2}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{x:OnPlatform Android=50, iOS=50, UWP=Auto}" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="FlyoutItemImage"
+               Source="{Binding FlyoutIcon}"
+               VerticalOptions="Center"
+               HorizontalOptions="{x:OnPlatform Default=Center, UWP=Start}"
+               HeightRequest="{x:OnPlatform Android=24, iOS=22, UWP=16}"
+               WidthRequest="{x:OnPlatform Android=24, iOS=22, UWP=16}">
+                        <Image.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <OnPlatform.Platforms>
+                                    <On Platform="Android" 
+                                        Value="20,0,0,0"/>
+                                    <On Platform="UWP"
+                            Value="12,0,12,0" />
+                                </OnPlatform.Platforms>
+                            </OnPlatform>
+                        </Image.Margin>
+                    </Image>
+                    <Label x:Name="FlyoutItemLabel"
+               Grid.Column="1"
+               Text="{Binding Title}"
+               FontSize="{x:OnPlatform Android=14, iOS=Small}"
+               HorizontalOptions="{x:OnPlatform UWP=Start}"
+               HorizontalTextAlignment="{x:OnPlatform UWP=Start}"
+               FontAttributes="{x:OnPlatform iOS=Bold}"
+               VerticalTextAlignment="Center">
+                        <Label.TextColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <OnPlatform.Platforms>
+                                    <On Platform="Android"
+                            Value="{StaticResource ShellTextColor}" />
+                                </OnPlatform.Platforms>
+                            </OnPlatform>
+                        </Label.TextColor>
+                        <Label.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <OnPlatform.Platforms>
+                                    <On Platform="Android"
+                            Value="10, 0, 0, 0" />
+                                </OnPlatform.Platforms>
+                            </OnPlatform>
+                        </Label.Margin>
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <OnPlatform.Platforms>
+                                    <On Platform="Android"
+                            Value="sans-serif-medium" />
+                                </OnPlatform.Platforms>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                </Grid>
+            </DataTemplate>
+
+
+
+            <DataTemplate x:Key="MenuTitle">
+                <Grid HeightRequest="200">
+                    <Label Text="Name of Shop" FontSize="30" TextColor="{StaticResource TextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Shell.Resources>
+
+
+
+  
+    
+    <FlyoutItem Title="Home" Icon="house.png" FlyoutDisplayOptions="AsSingleItem">
+        <Tab Title="Main" Icon="main.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MainPage}"/>
+        </Tab>
+        <Tab Title="Favorites" Icon="heart.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritePage}"/>
+        </Tab>
+        <Tab Title="Сart" Icon="shopcart.png">
+            <ShellContent ContentTemplate="{DataTemplate views:CartPage}"/>
+        </Tab>
+        <Tab Title="More" Icon="more.png"  > 
+            <ShellContent ContentTemplate="{DataTemplate views:MorePage}"  />
+        </Tab>
+    </FlyoutItem>
+    <ShellContent Title="Profile" Icon="user.png" ContentTemplate="{DataTemplate views:ProfilePage}"/>
+    <ShellContent Title="Setting" Icon="settings.png" ContentTemplate="{DataTemplate views:SettingPage}"/>
+    <ShellContent Title="About" Icon="about.png" ContentTemplate="{DataTemplate views:AboutPage}"/>
+
+    <MenuItem Text="Exit" IconImageSource="exit.png" Clicked="ExitItem_Clicked"/>
+</Shell>
