@@ -8,6 +8,7 @@ namespace AppShop.Helpers
 {
     internal class NativeHelper : INativeHelper
     {
+        //aboba
         public void CloseApp()
         {
             Process.GetCurrentProcess().CloseMainWindow();
