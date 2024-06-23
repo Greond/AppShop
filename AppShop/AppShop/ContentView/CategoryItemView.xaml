@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppShop.ContentView.CategoryItemView"
+             x:Name="this"
+             Padding="5">
+    <Frame x:Name="This"  BindingContext="{x:Reference this}"   HasShadow="True" CornerRadius="20" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2} ,Light={StaticResource LightThemeBackGColor2}}" >
+<!-- как сделать привязку Event сюда?    -->
+        <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+            <Image  x:Name="image"  Grid.Row="0" Source="{Binding Source}" />
+
+                <Label x:Name="label" Text="{Binding TitleText}" Grid.Row="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="12"/>
+            </Grid>
+        </Frame>
+
+</ContentView>
