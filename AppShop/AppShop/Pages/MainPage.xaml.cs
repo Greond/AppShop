@@ -20,19 +20,27 @@ namespace AppShop.Views
 		{
 			InitializeComponent ();
             BindingContext = new MainPageEvent();
-            ActionContentView actionContentView = new ActionContentView ();
-            
-            ActionLayout.Children.Add (actionContentView);
+
             ItemsDataBaseLoader itemsDataBaseLoader = new ItemsDataBaseLoader ();
-            ItemsDataBase item = itemsDataBaseLoader.LoadItem("Ноутбук",true);
-            actionContentView.TitleText = item.Name;
-            actionContentView.Description = item.Description;
-            actionContentView.OldPrice = item.oldprice.ToString();
-            actionContentView.NewPrice = item.price.ToString();
-            actionContentView.ButtonText = "Подробнее";
-            actionContentView.imageSource = item.icon;
-            actionContentView.SetBinding(ActionContentView.ButtonCommandProperty, new Binding("ActionButtonClick"));
-            
+            List<ItemsData> items = itemsDataBaseLoader.LoadAllStockItem();
+            if (items.Count == 0) { return; }
+            for (int i = 0; i < items.Count; i++)
+            {
+                ItemsData item = items[i];
+                ActionContentView actionContentView = new ActionContentView();
+                ActionLayout.Children.Add(actionContentView);
+                actionContentView.TitleText = item.Name;
+                actionContentView.Description = item.Description;
+                actionContentView.ButtonText = "Подробнее";
+                actionContentView.NewPrice = item.price.ToString();
+                actionContentView.OldPrice = item.oldprice.ToString();
+                actionContentView.imageSource = item.icon;
+                actionContentView.IdItem = item.Id;
+                actionContentView.ButtonCommandParameter = actionContentView;
+                actionContentView.SetBinding(ActionContentView.ButtonCommandProperty, new Binding("ActionButtonClick"));
+
+            }
+           
             
 		}
 

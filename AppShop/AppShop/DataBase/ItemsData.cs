@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace AppShop.DataBase
 {
-    class ItemsDataBase
+    class ItemsData
     {
-        public ItemsDataBase() { }
+        public ItemsData() { }
         public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

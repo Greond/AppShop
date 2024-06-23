@@ -9,7 +9,14 @@ namespace AppShop.ContentView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActionContentView : Xamarin.Forms.ContentView
     {
-      
+
+        public static readonly BindableProperty IdItemProperty =
+            BindableProperty.Create("IdItem", typeof(long), typeof(ActionContentView), default(long));
+        public long IdItem
+        {
+            get { return (long)GetValue(IdItemProperty); }
+            set { SetValue(IdItemProperty, value); }
+        }
 
         public static readonly BindableProperty TitleTextProperty =
             BindableProperty.Create("TitleText", typeof(string), typeof(ActionContentView), default(string));
@@ -74,7 +81,13 @@ namespace AppShop.ContentView
             set { SetValue(ButtonCommandProperty, value); }
         }
 
-
+        public static readonly BindableProperty ButtonCommandParameterProperty =
+            BindableProperty.Create("ButtonCommandParameter",typeof(object), typeof(ActionContentView),defaultValue: null);
+        public object ButtonCommandParameter
+        {
+            get { return (object)GetValue(ButtonCommandParameterProperty); }
+            set { SetValue(ButtonCommandParameterProperty, value);}
+        }
         public ActionContentView()
         {
             InitializeComponent();
@@ -84,6 +97,7 @@ namespace AppShop.ContentView
             LabelDescription.SetBinding(Label.TextProperty, new Binding(nameof(Description), source: this));
             LabelTitle.SetBinding(Label.TextProperty, new Binding (nameof(TitleText), source: this));
             ActionButton.SetBinding(Button.CommandProperty, new Binding (nameof(ButtonCommand), source: this));
+            ActionButton.SetBinding(Button.CommandParameterProperty, new Binding(nameof(ButtonCommandParameter), source: this));
            
         }
 

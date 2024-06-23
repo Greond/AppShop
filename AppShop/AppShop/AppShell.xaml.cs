@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 using AppShop.Pages;
+using AppShop.Views;
 
 namespace AppShop
 {

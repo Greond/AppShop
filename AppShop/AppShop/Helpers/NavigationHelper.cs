@@ -8,10 +8,10 @@ namespace AppShop.Helpers
      class NavigationHelper :NavigationPage , INavigationHelper
     {
         
-        public async void OpenItemPage(string page,string itemname)
+        public async void OpenItemPage(string page,string IdItem)
         {
           
-           await Shell.Current.GoToAsync($"{page}?itemname={itemname}");
+           await Shell.Current.GoToAsync($"{page}?itemid={IdItem}");
 
         }
         public async void CloseItemPage()

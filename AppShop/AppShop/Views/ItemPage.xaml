@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Back" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Button_Clicked" />
-            <Label x:Name="lebel" Text="Item Page"
+            <Label x:Name="lebel" Text="Item Page" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

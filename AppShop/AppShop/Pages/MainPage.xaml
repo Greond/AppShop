@@ -68,13 +68,9 @@
 
                 </StackLayout>
             </ScrollView>
-            <ScrollView x:Name="ScrollView" BackgroundColor="Aqua" HeightRequest="190" Orientation="Horizontal" >
+            <ScrollView x:Name="ScrollView" HeightRequest="190" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" >
                 <StackLayout Orientation="Horizontal"  x:Name="ActionLayout">
-                    <MyContentViews:ActionContentView ButtonText="Подробнее" TitleText="Акция!" ButtonCommand="{Binding ActionButtonClick}"
-                                                      Description="Большая распрадажа миниатюрных тюльпанчиков" NewPrice="111199p" OldPrice="111299p"
-                                                      imageSource="rose.png"/>
-                    <MyContentViews:ActionContentView TitleText="testv2" Description="tesetfdgfrefdgr edgfdgrgdf dfdfdfdfd fdgrgf grtgdfgfdd"
-                                                      ButtonText="aboba" NewPrice="299" OldPrice="2999" imageSource="test.png" />
+                    
 
                 </StackLayout>
             </ScrollView>

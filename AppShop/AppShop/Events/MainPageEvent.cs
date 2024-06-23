@@ -19,10 +19,12 @@ namespace AppShop.ViewEvent
             get
             {
                 return _ActionButtonClick ??
-                    (_ActionButtonClick = new Command<Object>(async obj =>
+                    (_ActionButtonClick = new Command(async (obj) =>
                     {
                         NavigationHelper navigationHelper = new NavigationHelper();
-                        Button button = (Button)obj;
+                        ActionContentView actionContentview = obj as ActionContentView;
+                        navigationHelper.OpenItemPage("ItemPage",actionContentview.IdItem.ToString());
+                        
                     }));
             }
         }

@@ -7,7 +7,7 @@ namespace AppShop.Helpers
 {
     interface INavigationHelper
     {
-        void OpenItemPage(string page,string itemname);
+        void OpenItemPage(string page,string IdItem);
         void CloseItemPage();
         void DisplayAlert(string Title, string message,string buttontext);
     }
