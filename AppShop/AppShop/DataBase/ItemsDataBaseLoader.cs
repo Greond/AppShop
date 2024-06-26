@@ -19,6 +19,7 @@ namespace AppShop.DataBase
             itemsDataBase.Type = "Пк и перефирия";
             itemsDataBase.stock = true;
             itemsDataBase.icon = ImageSource.FromFile("pc.png");
+            itemsDataBase.stars = 0;
 
             ItemsData itemsDataBase2 = new ItemsData();
             itemsDataBase2.Name = "Миниатюрные розы";
@@ -29,6 +30,7 @@ namespace AppShop.DataBase
             itemsDataBase2.oldprice = 169;
             itemsDataBase2.stock = true;
             itemsDataBase2.icon = ImageSource.FromFile("rose.png");
+            itemsDataBase2.stars = 0;
 
             ItemsData itemsDataBase3 = new ItemsData();
             itemsDataBase3.Name = "Телефон Poco x3 Pro";
@@ -38,6 +40,7 @@ namespace AppShop.DataBase
             itemsDataBase3.price = 19999;
             itemsDataBase3.stock = false;
             itemsDataBase3.icon = ImageSource.FromFile("mobilephone.png");
+            itemsDataBase3.stars = 0;
 
             items.Add(itemsDataBase3);
             items.Add(itemsDataBase2);

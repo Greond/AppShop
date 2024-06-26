@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:Converters="clr-namespace:AppShop.Converters"
+             xmlns:local="clr-namespace:AppShop.Views.ItemView"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             x:Class="AppShop.Pages.ItemPage">
+    <ContentPage.BindingContext>
+        <local:ItemPageViewModel/>
+    </ContentPage.BindingContext> 
+    <ContentPage.Resources>
+        <xamanimation:FadeToAnimation x:Key="FakeNavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500"/>
+        <xamanimation:FadeToAnimation x:Key="FakeNavBarFadeIn" Target="{x:Reference FakeNavBar}" Opacity="1" Duration="500"/>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+            <Setter Property="BorderColor" Value="#C7C6C6"/>
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.RowSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <BoxView BackgroundColor="White" HorizontalOptions="Fill" Grid.ColumnSpan="3"  
+                   TranslationY="{Binding RelativeScrollY, 
+                     Source={x:Reference Scroll}, 
+                     
+                     Converter={Converters:ScrollValueConverter}, 
+                     ConverterParameter='-5;0;200;false;0'}"
+                  />
+
+            <ImageButton Source="leftarrow" Grid.Column="0" Scale="0.6" BackgroundColor="White" 
+                      TranslationY="{Binding RelativeScrollY, 
+                         Source={x:Reference Scroll}, 
+                         Converter={Converters:ScrollValueConverter}, 
+                         ConverterParameter='-5;0;200;false;0'}" >
+                <ImageButton.Behaviors>
+                    <xamanimation:AnimateProgressDouble
+                     TargetProperty="VisualElement.Opacity"
+                     Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                     Minimum="0"
+                     Maximum="180"
+                     From="1"
+                     To="0"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+            <CarouselView x:Name="ImageCarousel"
+                      Loop="False"
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      BindingContext="this"
+                      TranslationY="{Binding RelativeScrollY,
+                                     Source={x:Reference Scroll},
+                                     Converter={Converters:ScrollValueConverter},
+                                     ConverterParameter='-5;0;200;false;0'}">
+                <CarouselView.Behaviors>
+                    <xamanimation:AnimateProgressDouble
+                     TargetProperty="VisualElement.Opacity"
+                     Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                     Minimum="0"
+                     Maximum="180"
+                     From="1"
+                     To="0"/>
+                </CarouselView.Behaviors>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}" 
+                    
+                   Aspect="AspectFill"
+                   />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <ImageButton Source="rightarrow" Grid.Column="2" Scale="0.6" BackgroundColor="White"  
+                        TranslationY="{Binding RelativeScrollY, 
+                         Source={x:Reference Scroll}, 
+                         Converter={Converters:ScrollValueConverter}, 
+                         ConverterParameter='-5;0;200;false;0'}">
+                <ImageButton.Behaviors>
+                    <xamanimation:AnimateProgressDouble
+                     TargetProperty="VisualElement.Opacity"
+                     Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                     Minimum="0"
+                     Maximum="180"
+                     From="1"
+                     To="0"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+            <ScrollView Grid.RowSpan="2" Grid.ColumnSpan="3"  >
+                <ScrollView.Behaviors>
+                    <xamanimation:ScrollViewScrollBehavior x:Name="Scroll"/>
+                </ScrollView.Behaviors>
+                <StackLayout  Margin="0,300,0,0" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor},Light={StaticResource LightThemeBackGColor}}" >
+                    <Frame  Visual="Material"
+                          HasShadow="False" >
+                        
+                        <StackLayout >
+                            <Label Text="{Binding ItemName}"  FontSize="16"/>
+                            <Label  />
+                            <Image Source="{Binding StarsImage}" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
+                        <Frame.Behaviors>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Scale"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.75"
+                                 Minimum="320"
+                                 Maximum="400"/>                
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.9"
+                                 Minimum="0"
+                                 Maximum="320"/>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="0.9"
+                                 To="0"
+                                 Minimum="320"
+                                 Maximum="400"/>
+                        </Frame.Behaviors>
+                        <StackLayout>
+                            <Label Text="Aboabdfdsgfdhgfhgfhgfyfghbdgfhfghfgyhfdg" FontSize="24" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
+                        <StackLayout>
+                            
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame Visual="Material" Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
+                        <StackLayout>
+                            
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+        <FlexLayout
+         Direction="Row"
+         Padding="15,15,15,15">
+            <ImageButton x:Name="BackButton"
+             FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightbackarrow.png,Light=backarrow.png}" Command="{Binding BackButtonClick}" CommandParameter="{Binding Source={x:Reference BackButton}}" >
+            </ImageButton>
+            <BoxView FlexLayout.Grow="1" />
+            <ImageButton x:Name="LikeButton"
+             Margin="15,0,0,0" FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightheart.png,Light=heart.png}"  Command="{Binding LikeButtonClick}" CommandParameter="{Binding Source={x:Reference LikeButton}}">
+            </ImageButton>
+        </FlexLayout>
+        <FlexLayout 
+         x:Name="FakeNavBar"
+         BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"
+         Direction="Row"
+         Opacity="0"
+         Padding="15,15,15,15">
+            <FlexLayout.Triggers>
+                <DataTrigger TargetType="FlexLayout"
+                             Binding="{Binding ScrollY, 
+                                     Source={x:Reference Scroll}, 
+                                     Converter={Converters:ComparisonConverter},
+                                     ConverterParameter='180;>'}"
+                             Value="true">
+                    <DataTrigger.EnterActions>
+                        <xamanimation:BeginAnimation
+                                 Animation="{StaticResource FakeNavBarFadeIn}" />
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <xamanimation:BeginAnimation
+                                 Animation="{StaticResource FakeNavBarFadeOut}" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </FlexLayout.Triggers>
+            <ImageButton x:Name="FakeBackButton"
+ FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightbackarrow.png,Light=backarrow.png}" Command="{Binding BackButtonClick}" CommandParameter="{Binding Source={x:Reference FakeBackButton}}" />
+            <Label
+             Text="Title of the item or elemt in this page" 
+             FontSize="18"
+             Margin="10,0"
+             VerticalOptions="Center"
+             LineBreakMode="TailTruncation"
+             FlexLayout.AlignSelf="Center"
+             FlexLayout.Grow="1" />
+            <ImageButton x:Name="FakeLikeButton"
+  Margin="15,0,0,0" FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightheart.png,Light=heart.png}"  Command="{Binding LikeButtonClick}" CommandParameter="{Binding Source={x:Reference FakeLikeButton}}"/>
+        </FlexLayout>
+    </Grid>
+
+</ContentPage>

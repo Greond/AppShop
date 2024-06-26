@@ -19,7 +19,7 @@ namespace AppShop.ViewEvent
             get
             {
                 return _ActionButtonClick ??
-                    (_ActionButtonClick = new Command(async (obj) =>
+                    (_ActionButtonClick = new Command( (obj) =>
                     {
                         NavigationHelper navigationHelper = new NavigationHelper();
                         ActionContentView actionContentview = obj as ActionContentView;

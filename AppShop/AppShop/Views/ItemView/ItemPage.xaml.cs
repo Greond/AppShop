@@ -1,4 +1,5 @@
 ﻿using AppShop.DataBase;
+using AppShop.Views.ItemView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,28 +14,26 @@ namespace AppShop.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[QueryProperty(nameof(ItemId), "itemid")]
-	public partial class ItemPage : NavigationPage
+	public partial class ItemPage : ContentPage
 	{
         public ItemPage()
         {
             InitializeComponent();
-            
         }
         public string ItemId
         {
             set
             {
-                LoadPage(value);
+                LoadItem(value);
             }
         }
-        private ItemsData PageItem;
-		private void LoadPage(string _ItemId)
+		private void LoadItem(string _ItemId)
 		{
 			try
 			{
 			   ItemsDataBaseLoader loader = new ItemsDataBaseLoader();
-			  PageItem = loader.LoadItem(Convert.ToInt64(_ItemId));
-                
+                ItemPageViewModel ItemViewModel = new ItemPageViewModel(); 
+                ItemViewModel.loadData(loader.LoadItem(Convert.ToInt64(_ItemId)));
 			}
 			catch { Console.WriteLine("ItemLoadEror"); }
           

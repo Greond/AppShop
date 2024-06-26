@@ -16,7 +16,7 @@ namespace AppShop.DataBase
         public double oldprice{ get; set; }
         public bool stock { get; set; }
         public ImageSource icon { get; set; }
-
+        public int stars { get; set; }
 
     }
 }

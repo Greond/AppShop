@@ -155,5 +155,22 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\mobilephone.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\backarrow.png" />
+    <AndroidResource Include="Resources\drawable\leftarrow.png" />
+    <AndroidResource Include="Resources\drawable\rightarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lightbackarrow.png" />
+    <AndroidResource Include="Resources\drawable\lightheart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rating0.png" />
+    <AndroidResource Include="Resources\drawable\rating1.png" />
+    <AndroidResource Include="Resources\drawable\rating2.png" />
+    <AndroidResource Include="Resources\drawable\rating3.png" />
+    <AndroidResource Include="Resources\drawable\rating4.png" />
+    <AndroidResource Include="Resources\drawable\rating5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
