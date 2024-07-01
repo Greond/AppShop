@@ -35,7 +35,7 @@ namespace AppShop.Views
                 actionContentView.NewPrice = item.Price.ToString();
                 actionContentView.OldPrice = item.OldPrice.ToString();
                 actionContentView.imageSource = item.Icon;
-                actionContentView.IdItem = item.Id;
+                actionContentView.IdItem = item.ID;
                 actionContentView.ButtonCommandParameter = actionContentView;
                 actionContentView.SetBinding(ActionContentView.ButtonCommandProperty, new Binding("ActionButtonClick"));
 

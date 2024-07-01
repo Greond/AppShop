@@ -83,7 +83,7 @@ namespace AppShop.Views.ItemView
                 return _BackButtonClick ??
                     (_BackButtonClick = new MvvmHelpers.Commands.Command((obj) =>
                     {
-
+                        Shell.Current.GoToAsync("..");
 
                     }));
             }

@@ -171,6 +171,24 @@
                                         FontSize="18" HorizontalOptions="EndAndExpand"
                                          TextColor="White"/>
                             </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="В наличии: "/>
+                                            <Span Text="{Binding Item.Quantity}" TextColor="#766BFB" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label HorizontalOptions="EndAndExpand" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="ID Товара: " />
+                                            <Span Text="{Binding Item.ID}" TextColor="#766BFB" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                     <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
@@ -180,30 +198,39 @@
                                  Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
                                  From="1"
                                  To="0.75"
-                                 Minimum="320"
-                                 Maximum="400"/>                
+                                 Minimum="700"
+                                 Maximum="900"/>                
                             <xamanimation:AnimateProgressDouble 
                                  TargetProperty="VisualElement.Opacity"
                                  Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
                                  From="1"
                                  To="0.9"
-                                 Minimum="0"
-                                 Maximum="320"/>
+                                 Minimum="700"
+                                 Maximum="900"/>
                             <xamanimation:AnimateProgressDouble 
                                  TargetProperty="VisualElement.Opacity"
                                  Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
                                  From="0.9"
                                  To="0"
-                                 Minimum="320"
-                                 Maximum="400"/>
+                                 Minimum="700"
+                                 Maximum="900"/>
                         </Frame.Behaviors>
                         <StackLayout>
-                            <Label Text="Aboabdfdsgfdhgfhgfhgfyfghbdgfhfghfgyhfdg" FontSize="24" />
+                            <Label Text="Описание" FontSize="16" FontAttributes="Bold" />
+                            
+                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}"
+                                   >
+                                <Label  Text="{Binding Item.MainDescription}"  />
+                            </Frame>
                         </StackLayout>
                     </Frame>
                     <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
                         <StackLayout>
-                            
+                            <Label Text="Характеристики" FontSize="16" FontAttributes="Bold" />
+                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}"
+        >
+                                <Label  Text="{Binding Item.Specifications}"  />
+                            </Frame>
 
                         </StackLayout>
                     </Frame>
@@ -252,7 +279,7 @@
             <ImageButton x:Name="FakeBackButton"
  FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightbackarrow.png,Light=backarrow.png}" Command="{Binding BackButtonClick}" CommandParameter="{Binding Source={x:Reference FakeBackButton}}" />
             <Label
-             Text="Title of the item or elemt in this page" 
+             Text="{Binding Item.Name}" 
              FontSize="18"
              Margin="10,0"
              VerticalOptions="Center"
