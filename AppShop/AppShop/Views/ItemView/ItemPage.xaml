@@ -6,16 +6,27 @@
              xmlns:local="clr-namespace:AppShop.Views.ItemView"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              x:Class="AppShop.Pages.ItemPage">
-    <ContentPage.BindingContext>
-        <local:ItemPageViewModel/>
-    </ContentPage.BindingContext> 
+
     <ContentPage.Resources>
+        <Color x:Key="FrameBorderColor" >#6D6D6D</Color>
+        <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
+        <Color x:Key="DarkBorderColor">#565656</Color>
+
         <xamanimation:FadeToAnimation x:Key="FakeNavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500"/>
         <xamanimation:FadeToAnimation x:Key="FakeNavBarFadeIn" Target="{x:Reference FakeNavBar}" Opacity="1" Duration="500"/>
-        <Style TargetType="Frame">
+        <xamanimation:ScaleToAnimation x:Key="ButtonFocusedAnimate" Target="{x:Reference InfoButton}" Scale="0.8" Duration="100" Easing="SpringIn" />
+        <xamanimation:ScaleToAnimation x:Key="ButtonUnFocusedAnimateOut" Target="{x:Reference InfoButton}" Scale="1" Duration="50" Easing="SpringOut" />
+
+        <Style TargetType="Frame"  >
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
-            <Setter Property="BorderColor" Value="#C7C6C6"/>
         </Style>
+        <Style TargetType="Frame" x:Key="FrameBorderStyle">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+            <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource DarkBorderColor},Light={StaticResource FrameBorderColor2}}" />
+            <Setter Property="HasShadow" Value="False"/>
+        </Style>
+
+
     </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -60,7 +71,7 @@
                       Loop="False"
                       Grid.Row="0"
                       Grid.Column="1"
-                      BindingContext="this"
+                      ItemsSource="{Binding Item.Images}"
                       TranslationY="{Binding RelativeScrollY,
                                      Source={x:Reference Scroll},
                                      Converter={Converters:ScrollValueConverter},
@@ -103,13 +114,63 @@
                     <xamanimation:ScrollViewScrollBehavior x:Name="Scroll"/>
                 </ScrollView.Behaviors>
                 <StackLayout  Margin="0,300,0,0" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor},Light={StaticResource LightThemeBackGColor}}" >
+                    <StackLayout.Behaviors>
+                        <xamanimation:EntranceTransition Duration="500" />
+                    </StackLayout.Behaviors>
                     <Frame  Visual="Material"
-                          HasShadow="False" >
-                        
-                        <StackLayout >
-                            <Label Text="{Binding ItemName}"  FontSize="16"/>
-                            <Label  />
-                            <Image Source="{Binding StarsImage}" />
+                          HasShadow="False" Padding="13" >
+                        <!-- Самый первый Фрейм с основными данными товара -->
+                        <StackLayout>
+                            <Label Text="{Binding Item.Name}"  FontSize="18"/>
+                            <Frame Style="{StaticResource FrameBorderStyle}"  CornerRadius="5" VerticalOptions="Start"  HorizontalOptions="Start" Padding="5" >
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding ItemRatingImage}" WidthRequest="90" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                    <Label Text="{Binding Item.ReviewsCount}" />
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="{Binding Item.Description}" FontSize="16"/>
+                            <StackLayout  Orientation="Horizontal" >
+                                <Frame  CornerRadius="10" VerticalOptions="Start" 
+                                        HorizontalOptions="Start" Padding="7" WidthRequest="200"
+                                        Style="{StaticResource FrameBorderStyle}"
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor},Light={StaticResource LightThemeBackGColor}}" >
+                                    <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                        <Label Margin="0,0,0,0"  MaxLines="1" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Item.Price}" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Dark=white,Light=black}" />
+                                                    <Span Text=" ₽"  FontAttributes="Bold" TextColor="{AppThemeBinding Dark=white,Light=black}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Margin="0,0,0,3"
+                                               HorizontalOptions="Start" 
+                                               VerticalOptions="End" TextDecorations="Strikethrough"  >
+                                            <Label.FormattedText>
+                                                <FormattedString >
+                                                    <Span Text="{Binding Item.OldPrice}"  />
+                                                    <Span Text="₽" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <ImageButton Source="{AppThemeBinding Dark=lightinfo.png,Light=grayinfo.png}"
+                                                     BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor},Light={StaticResource LightThemeBackGColor}}"
+                                                     HeightRequest="30" HorizontalOptions="EndAndExpand"
+                                                     x:Name="InfoButton"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame CornerRadius="10" VerticalOptions="Start" HeightRequest="30"
+                                        HorizontalOptions="Start" Padding="7"  Style="{StaticResource FrameBorderStyle}"
+                                        >
+                                    <ImageButton Source="{AppThemeBinding Dark=lightheart.png,Light=grayheart.png }" 
+                                     BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"
+                                                 Aspect="AspectFit" HeightRequest="40" WidthRequest="35" />
+                                </Frame>
+                                <Button HeightRequest="30" CornerRadius="10" BackgroundColor="#92DC58"
+                                        TextTransform="None" Text="Купить" FontAttributes="Bold" 
+                                        FontSize="18" HorizontalOptions="EndAndExpand"
+                                         TextColor="White"/>
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                     <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
@@ -158,11 +219,11 @@
          Direction="Row"
          Padding="15,15,15,15">
             <ImageButton x:Name="BackButton"
-             FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightbackarrow.png,Light=backarrow.png}" Command="{Binding BackButtonClick}" CommandParameter="{Binding Source={x:Reference BackButton}}" >
+             FlexLayout.Shrink="0" Source="graybackarrow.png" Command="{Binding BackButtonClick}" CommandParameter="{Binding Source={x:Reference BackButton}}" >
             </ImageButton>
             <BoxView FlexLayout.Grow="1" />
             <ImageButton x:Name="LikeButton"
-             Margin="15,0,0,0" FlexLayout.Shrink="0" Source="{AppThemeBinding Dark=lightheart.png,Light=heart.png}"  Command="{Binding LikeButtonClick}" CommandParameter="{Binding Source={x:Reference LikeButton}}">
+             Margin="15,0,0,0" FlexLayout.Shrink="0" Source="grayheart.png"  Command="{Binding LikeButtonClick}" CommandParameter="{Binding Source={x:Reference LikeButton}}">
             </ImageButton>
         </FlexLayout>
         <FlexLayout 

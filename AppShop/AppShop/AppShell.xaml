@@ -34,7 +34,6 @@
             <Style x:Key="BaseStyle"  TargetType="Element">
 
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor}, Dark={StaticResource DarkThemeBackGColor}}"/>
-                <Setter Property="Shell.TabBarForegroundColor" Value="Aqua"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource LightThemeTabBarUnselectedColor},Dark= {StaticResource DarkThemeTabBarUnselectedColor}}"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeShellSelectedTextColor},Dark={StaticResource DarkThemeShellSelectedTextColor} }"/>
             </Style>

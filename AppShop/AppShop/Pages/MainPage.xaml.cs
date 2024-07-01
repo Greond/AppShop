@@ -32,9 +32,9 @@ namespace AppShop.Views
                 actionContentView.TitleText = item.Name;
                 actionContentView.Description = item.Description;
                 actionContentView.ButtonText = "Подробнее";
-                actionContentView.NewPrice = item.price.ToString();
-                actionContentView.OldPrice = item.oldprice.ToString();
-                actionContentView.imageSource = item.icon;
+                actionContentView.NewPrice = item.Price.ToString();
+                actionContentView.OldPrice = item.OldPrice.ToString();
+                actionContentView.imageSource = item.Icon;
                 actionContentView.IdItem = item.Id;
                 actionContentView.ButtonCommandParameter = actionContentView;
                 actionContentView.SetBinding(ActionContentView.ButtonCommandProperty, new Binding("ActionButtonClick"));

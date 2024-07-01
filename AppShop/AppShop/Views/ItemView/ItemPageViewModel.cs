@@ -14,35 +14,58 @@ namespace AppShop.Views.ItemView
 {
     internal class ItemPageViewModel : BaseViewModel
     {
-        private string _ItemName;
-        public string ItemName
-        { get { return _ItemName; } set { _ItemName = value; } }
-        public ImageSource StarsImage {
-            get; set;
-        }
+        
         private bool _IsRefreshing;
         public bool IsRefreshing
         { get { return _IsRefreshing; } set { _IsRefreshing = value; } }
 
+        private ItemsData _Item;
+        public ItemsData Item {
+            get { return _Item; }
+            set{ 
+            _Item = value;
+            OnPropertyChanged();
+            }
+        }
+        private ImageSource _ItemRatingImage;
+        public ImageSource ItemRatingImage { 
+            get { return _ItemRatingImage; }
+            set
+            {
+                _ItemRatingImage = value;
+                OnPropertyChanged();
+            }
+                
+                }
+
         public ICommand RefreshCommand { get; set; }
-        public ItemPageViewModel()
+        public ItemPageViewModel(string ID)
         {
-
             RefreshCommand = new MvvmHelpers.Commands.Command(() => OnRefresh());
-
+            SetItem(ID);
+            loadData();
         }
         private void OnRefresh()
         {
            //  Thread thread = new Thread(async () => { await loadData(); });
             // thread.Start();
         }
-        public  Task loadData(ItemsData PageItem)
+        protected internal void SetItem(string id)
+        {
+            ItemsDataBaseLoader Loader = new ItemsDataBaseLoader();
+
+            ItemsData item = Loader.LoadItem(id);
+            Item = item;
+        }
+        public  Task loadData()
         {
             IsRefreshing = true;
             try
             {
-                ItemName = PageItem.Name;
-                StarsImage = ImageSource.FromFile($"rating{PageItem.stars}.png");
+                string ratingimagesource = $"rating{Item.Stars}.png";
+                ItemRatingImage = ImageSource.FromFile(ratingimagesource);
+                
+                
                 IsRefreshing = false;
                 return Task.CompletedTask;
             }

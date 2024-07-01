@@ -31,16 +31,11 @@ namespace AppShop.Pages
 		{
 			try
 			{
-			   ItemsDataBaseLoader loader = new ItemsDataBaseLoader();
-                ItemPageViewModel ItemViewModel = new ItemPageViewModel(); 
-                ItemViewModel.loadData(loader.LoadItem(Convert.ToInt64(_ItemId)));
+                ItemPageViewModel PageViewModel = new ItemPageViewModel(_ItemId); 
+                BindingContext = PageViewModel;
 			}
 			catch { Console.WriteLine("ItemLoadEror"); }
           
-        }
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("..");
         }
     }
 }

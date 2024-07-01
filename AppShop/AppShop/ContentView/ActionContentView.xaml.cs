@@ -11,10 +11,10 @@ namespace AppShop.ContentView
     {
 
         public static readonly BindableProperty IdItemProperty =
-            BindableProperty.Create("IdItem", typeof(long), typeof(ActionContentView), default(long));
-        public long IdItem
+            BindableProperty.Create("IdItem", typeof(string), typeof(ActionContentView), default(string));
+        public string IdItem
         {
-            get { return (long)GetValue(IdItemProperty); }
+            get { return (string)GetValue(IdItemProperty); }
             set { SetValue(IdItemProperty, value); }
         }
 
