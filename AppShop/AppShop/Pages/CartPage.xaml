@@ -4,7 +4,7 @@
              x:Class="AppShop.Views.CartPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to your cart!" TextColor="{StaticResource TextColor}" FontSize="20"
+            <Label Text="Welcome to your cart!" FontSize="20"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

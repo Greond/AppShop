@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views ="clr-namespace:AppShop.Views"
              x:Class="AppShop.AppShell"
-             FlyoutBackgroundColor="{StaticResource BackColor}"
-             Shell.BackgroundColor="{StaticResource BackColor}"
+       
+             Style="{StaticResource ShellThemeStyle}"
+       
              Shell.ItemTemplate="{StaticResource FlyoutTemplate}"
              Shell.MenuItemTemplate="{StaticResource FlyoutTemplate}"
        
@@ -19,16 +20,31 @@
         <ResourceDictionary>
             <Color x:Key="ThemeColorWhite">#E0E0E0</Color>
             <Color x:Key="ThemeColorBlack">#0E0F20</Color>
-            <Color x:Key="ShellTextColor">#0E0F20</Color>
 
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ThemeColorWhite}"/>
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource ThemeColorBlack}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#696969"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource ThemeColorBlack}"/>
+            <Color x:Key="LightThemeShellSelectedTextColor">#0E0F20</Color>
+            <Color x:Key="DarkThemeShellSelectedTextColor">#E0E0E0</Color>
+            <Color x:Key="LightThemeTabBarUnselectedColor">#696969</Color>
+            <Color x:Key="DarkThemeTabBarUnselectedColor">#A2A2A2</Color>
+
+            <Color x:Key="LightThemeFlyoutTextColor">#080808</Color>
+            <Color x:Key="DarkThemeFlyoutTextColor">#E1E1E1</Color>
+            <Color x:Key="LightThemeFluoutSelecredBackGColor">#F2F2F2</Color>
+            <Color x:Key="DarkThemeFluoutSelecredBackGColor">#3A3A3A</Color>
+
+            <Style x:Key="BaseStyle"  TargetType="Element">
+
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor}, Dark={StaticResource DarkThemeBackGColor}}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource LightThemeTabBarUnselectedColor},Dark= {StaticResource DarkThemeTabBarUnselectedColor}}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeShellSelectedTextColor},Dark={StaticResource DarkThemeShellSelectedTextColor} }"/>
             </Style>
-            
+
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}"/>
+
+            <Style TargetType="Shell" x:Key="ShellThemeStyle">
+                <Setter Property="Shell.FlyoutBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor}, Dark={StaticResource DarkThemeBackGColor}}"/>
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor}, Dark={StaticResource DarkThemeBackGColor}}"/>
+
+            </Style>
 
             <DataTemplate x:Key="FlyoutTemplate">
                 <Grid x:Name="FlyoutItemLayout"
@@ -38,11 +54,18 @@
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroupList>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light= {StaticResource LightThemeBackGColor},Dark={StaticResource DarkThemeBackGColor}}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState x:Name="Selected">
                                     <VisualState.Setters>
                                         <Setter Property="BackgroundColor"
-                                    Value="{x:OnPlatform Android=#F2F2F2, iOS=#F2F2F2}" />
+                                    Value="{x:OnPlatform Android={AppThemeBinding Light={StaticResource LightThemeFluoutSelecredBackGColor}
+                                            ,Dark= {StaticResource DarkThemeFluoutSelecredBackGColor} },
+                                            iOS={AppThemeBinding Light={StaticResource LightThemeFluoutSelecredBackGColor}
+                                            ,Dark= {StaticResource DarkThemeFluoutSelecredBackGColor}}}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -52,7 +75,7 @@
                         <ColumnDefinition Width="{x:OnPlatform Android=50, iOS=50, UWP=Auto}" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="FlyoutItemImage"
+                    <Image x:Name="FlyoutItemImage" 
                Source="{Binding FlyoutIcon}"
                VerticalOptions="Center"
                HorizontalOptions="{x:OnPlatform Default=Center, UWP=Start}"
@@ -69,22 +92,16 @@
                             </OnPlatform>
                         </Image.Margin>
                     </Image>
-                    <Label x:Name="FlyoutItemLabel"
+                    <Label x:Name="FlyoutItemLabel" 
                Grid.Column="1"
                Text="{Binding Title}"
+               TextColor="{AppThemeBinding Light={StaticResource LightThemeFlyoutTextColor}, Dark={StaticResource DarkThemeFlyoutTextColor}}"
                FontSize="{x:OnPlatform Android=14, iOS=Small}"
                HorizontalOptions="{x:OnPlatform UWP=Start}"
                HorizontalTextAlignment="{x:OnPlatform UWP=Start}"
                FontAttributes="{x:OnPlatform iOS=Bold}"
                VerticalTextAlignment="Center">
-                        <Label.TextColor>
-                            <OnPlatform x:TypeArguments="Color">
-                                <OnPlatform.Platforms>
-                                    <On Platform="Android"
-                            Value="{StaticResource ShellTextColor}" />
-                                </OnPlatform.Platforms>
-                            </OnPlatform>
-                        </Label.TextColor>
+
                         <Label.Margin>
                             <OnPlatform x:TypeArguments="Thickness">
                                 <OnPlatform.Platforms>
@@ -109,7 +126,7 @@
 
             <DataTemplate x:Key="MenuTitle">
                 <Grid HeightRequest="200">
-                    <Label Text="Name of Shop" FontSize="30" TextColor="{StaticResource TextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Label Text="ZiP" FontSize="35" TextColor="{AppThemeBinding Light= {StaticResource LightThemeFlyoutTextColor}, Dark= {StaticResource DarkThemeFlyoutTextColor}}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 </Grid>
             </DataTemplate>
 
@@ -118,9 +135,9 @@
 
 
 
-  
-    
-    <FlyoutItem Title="Home" Icon="house.png" FlyoutDisplayOptions="AsSingleItem">
+
+
+    <FlyoutItem Title="Home" FlyoutIcon="{AppThemeBinding Dark=lighthouse.png, Light=house.png}" FlyoutDisplayOptions="AsSingleItem">
         <Tab Title="Main" Icon="main.png">
             <ShellContent ContentTemplate="{DataTemplate views:MainPage}"/>
         </Tab>
@@ -130,13 +147,13 @@
         <Tab Title="Сart" Icon="shopcart.png">
             <ShellContent ContentTemplate="{DataTemplate views:CartPage}"/>
         </Tab>
-        <Tab Title="More" Icon="more.png"  > 
+        <Tab Title="More" Icon="more.png"  >
             <ShellContent ContentTemplate="{DataTemplate views:MorePage}"  />
         </Tab>
     </FlyoutItem>
-    <ShellContent Title="Profile" Icon="user.png" ContentTemplate="{DataTemplate views:ProfilePage}"/>
-    <ShellContent Title="Setting" Icon="settings.png" ContentTemplate="{DataTemplate views:SettingPage}"/>
-    <ShellContent Title="About" Icon="about.png" ContentTemplate="{DataTemplate views:AboutPage}"/>
+    <ShellContent Title="Profile" FlyoutIcon="{AppThemeBinding Dark=lightuser.png , Light=user.png}"  ContentTemplate="{DataTemplate views:ProfilePage}"/>
+    <ShellContent Title="Setting" FlyoutIcon="{AppThemeBinding Dark=lightsettings.png, Light=settings.png}" ContentTemplate="{DataTemplate views:SettingPage}"/>
+    <ShellContent Title="About" FlyoutIcon="{AppThemeBinding Dark=lightabout.png, Light=about.png}" ContentTemplate="{DataTemplate views:AboutPage}"/>
 
-    <MenuItem Text="Exit" IconImageSource="exit.png" Clicked="ExitItem_Clicked"/>
+    <MenuItem Text="Exit" IconImageSource="{AppThemeBinding Dark=lightexit.png, Light=exit.png}"  Clicked="ExitItem_Clicked"/>
 </Shell>

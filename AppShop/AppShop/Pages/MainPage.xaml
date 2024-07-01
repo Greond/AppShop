@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:MyContentViews="clr-namespace:AppShop.ContentView"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="AppShop.Views.MainPage"
+             
+            >
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+            <Image x:Key="TestImage" Source="{AppThemeBinding Dark=test.png,Light=rose.png}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout   >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Source="{AppThemeBinding Light=menu.png , Dark=lightmenu.png}" HeightRequest="25" WidthRequest="30" Clicked="Menu_Clicked"  Pressed="Menu_Pressed"
+                 HorizontalOptions="Start" VerticalOptions="Start" Margin="20,20" 
+                             CornerRadius="5" Focused="Menu_Focused" Grid.Column="0" Style="{StaticResource ThemeImageStyle}" />
+                <Label Text="ZiP" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                       Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="30" />
+                <ImageButton Source="{AppThemeBinding Light=user.png ,Dark=lightuser.png}" Style="{StaticResource ThemeImageStyle}"
+                             Grid.Column="2" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="25" WidthRequest="30" Margin="0,0,10,0" CornerRadius="5" />
+            </Grid>
+            <Frame CornerRadius="20" Padding="3" Margin="20,5,20,5" Style="{StaticResource ThemeElementStyle}" >
+                <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
+                </SearchBar>
+            </Frame>
+
+
+            <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never"  >
+                <StackLayout Orientation="Horizontal">
+                    <MyContentViews:CategoryItemView TitleText="Компьютеры&#10;и перефирия" Source="pc.png" x:Name="item1" >
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                        </ContentView.GestureRecognizers>
+                    </MyContentViews:CategoryItemView>
+
+                    <MyContentViews:CategoryItemView TitleText="Комплектующие&#10;для пк" Source="pcv2.png" x:Name="item2">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                        </ContentView.GestureRecognizers>
+                    </MyContentViews:CategoryItemView>
+
+                    <MyContentViews:CategoryItemView TitleText="Стевое&#10;оборудование" Source="wifirouter.png" x:Name="item3" >
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                        </ContentView.GestureRecognizers>
+                    </MyContentViews:CategoryItemView>
+
+                    <MyContentViews:CategoryItemView TitleText="Бытовая технкиа&#10;и приборы" Source="homeappliance.png" x:Name="item4" >
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                        </ContentView.GestureRecognizers>
+                    </MyContentViews:CategoryItemView>
+                    <MyContentViews:CategoryItemView TitleText="Канцтовары&#10;и аксессуары" Source="stationery.png" x:Name="item5" >
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                        </ContentView.GestureRecognizers>
+                    </MyContentViews:CategoryItemView>
+
+                </StackLayout>
+            </ScrollView>
+            <ScrollView x:Name="ScrollView" HeightRequest="190" Orientation="Horizontal" HorizontalScrollBarVisibility="Never"  >
+                <StackLayout Orientation="Horizontal"  x:Name="ActionLayout"  >
+
+
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>  
+    </ContentPage.Content>
+</ContentPage>

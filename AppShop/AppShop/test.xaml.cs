@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace AppShop
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class test : ContentPage
     {
-        public MainPage()
+        public test()
         {
-            InitializeComponent();
+         
         }
         private bool CanClick = true;
         private async void ImageButton_Clicked(object sender, EventArgs e)

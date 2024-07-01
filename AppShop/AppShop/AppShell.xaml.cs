@@ -8,6 +8,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
+using AppShop.Pages;
+using AppShop.Views;
 
 namespace AppShop
 {
@@ -17,12 +19,13 @@ namespace AppShop
 		public AppShell ()
 		{
 			InitializeComponent ();
+			Routing.RegisterRoute("ItemPage", typeof(ItemPage));
 		}
 		public ICommand ExitCommand => new Command(() =>
 		{
 			Application.Current.Quit();
 		});
-        private async void ExitItem_Clicked(object sender, EventArgs e)
+        private  void ExitItem_Clicked(object sender, EventArgs e)
         {
 			NativeHelper nativeHelper = new NativeHelper();
 			nativeHelper.CloseApp();

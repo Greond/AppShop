@@ -6,7 +6,53 @@
         <ResourceDictionary>
 
             <Color x:Key="BackColor">#E0E0E0</Color>
-            <Color x:Key="TextColor">#0E0F20</Color> 
+            <Color x:Key="TextColor">#0E0F20</Color>
+
+
+            <Color x:Key="LightThemeTextColor">#252525</Color>
+            <Color x:Key="LightThemeTextColor2">black</Color>
+            
+            <Color x:Key="DarkThemeTextColor">#B7B7B7</Color>
+            <Color x:Key="DarkThemeTextColor2">white</Color>
+
+
+            <Color x:Key="DarkThemeBackGColor">#151515</Color>
+            <Color x:Key="DarkThemeBackGColor2">#202020</Color>
+
+            <Color x:Key="LightThemeBackGColor">#E0E0E0</Color>
+            <Color x:Key="LightThemeBackGColor2">#D3D3D3</Color>
+
+
+            <Style TargetType="Page" ApplyToDerivedTypes="True" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor},Dark={StaticResource DarkThemeBackGColor}} "/>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeTextColor},Dark={StaticResource DarkThemeTextColor}}"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeTextColor},Dark={StaticResource DarkThemeTextColor}}"/>
+            </Style>
+            <Style TargetType="Button" x:Key="ButtonStylev2" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor } ,Dark={StaticResource DarkThemeBackGColor}}" />
+            </Style>
+
+            <Style TargetType="VisualElement"  x:Key="ThemeElementStyle"  ApplyToDerivedTypes="True" >
+
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor2},Dark={StaticResource DarkThemeBackGColor2}} "/>
+            </Style>
+
+
+
+            <Style TargetType="Image"  x:Key="ThemeImageStyle"  ApplyToDerivedTypes="True" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor},Dark={StaticResource DarkThemeBackGColor}} "/>
+            </Style>
+
+            <Style TargetType="ImageButton" >
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

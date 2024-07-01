@@ -4,7 +4,7 @@
              x:Class="AppShop.Views.FavoritePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Faforite Page!" TextColor="{StaticResource TextColor}"
+            <Label Text="Welcome to Faforite Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
