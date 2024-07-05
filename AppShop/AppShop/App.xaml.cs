@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using AppShop.Views.Registr_View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,13 +12,13 @@ namespace AppShop
         {
             InitializeComponent();
 
-          /*  MainPage = new NavigationPage(new AppShop.MainPage())
-            {
-                BarBackgroundColor = Color.FromHex("E0E0E0"),
-                BarTextColor = Color.FromHex("0E0F20")
-                
-            };  */
-          MainPage = new AppShell();
+            /*  MainPage = new NavigationPage(new AppShop.MainPage())
+              {
+                  BarBackgroundColor = Color.FromHex("E0E0E0"),
+                  BarTextColor = Color.FromHex("0E0F20")
+
+              };  */
+            MainPage = new RegistrPage();
         }
 
         protected override void OnStart()
