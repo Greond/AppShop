@@ -1,5 +1,6 @@
 ﻿
 using AppShop.Views.Registr_View;
+using AppShop.Views.RegistrView;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +19,7 @@ namespace AppShop
                   BarTextColor = Color.FromHex("0E0F20")
 
               };  */
-            MainPage = new RegistrPage();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

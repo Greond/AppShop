@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace AppShop.Views.RegistrView
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegistrPage : ContentPage
-	{
-		public RegistrPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PasswordPage : ContentPage
+    {
+        public PasswordPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

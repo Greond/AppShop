@@ -1,15 +1,18 @@
-﻿using MvvmHelpers;
+﻿using AppShop.Helpers;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace AppShop.Views.Registr_View
+namespace AppShop.Views.RegistrView
 {
-    class RegistrPageViewModel : BaseViewModel
+    class ViewModel : BaseViewModel
     {
         private ICommand _ClearButtonClick;
+        // test
         public ICommand ClearButtonClick
         {
             get
@@ -22,19 +25,31 @@ namespace AppShop.Views.Registr_View
             }
         }
 
-        private ICommand _SaveButtonClick;
-        public ICommand SaveButtonClick
+        private ICommand _RegistrPageButtonNextClick;
+        public ICommand RegistrPageButtonNextClick
         {
             get
             {
-                return _SaveButtonClick ??
-                    (_SaveButtonClick = new MvvmHelpers.Commands.Command((obj) =>
+                return _RegistrPageButtonNextClick ??
+                    (_RegistrPageButtonNextClick = new MvvmHelpers.Commands.Command((obj) =>
                     {
+                       //Save Data to DataBase
                        
-                        List<string> list = new List<string>();
-                        list.Add(Login);
-                        list.Add(Email);
-                        list.Add(Password);
+                        // Comon to Next Password Page
+                        Shell.Current.GoToAsync("PasswordPage");
+                    }));
+            }
+        }
+        private ICommand _SaveData;
+        public ICommand SaveData
+        {
+            get
+            {
+                return _SaveData ??
+                    (_SaveData = new MvvmHelpers.Commands.Command((obj) =>
+                    {
+                        //Save Data to DataBase
+
                     }));
             }
         }
@@ -63,5 +78,10 @@ namespace AppShop.Views.Registr_View
         private string _Password;
         public string Password
         { get { return _Password; } set { _Password = value; } }
+
+        private Task<bool> SaveUserData(string Login, string Email, string Password)
+        {
+            return Task.FromResult(true);  
+        }
     }
 }

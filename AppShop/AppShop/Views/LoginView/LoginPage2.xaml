@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppShop.Views.RegistrView.RegistrPage"
-             xmlns:tool="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:ViewModel="clr-namespace:AppShop.Views.RegistrView">
+             x:Class="AppShop.Views.LoginView.LoginPage2"
+                          xmlns:local="clr-namespace:AppShop.Views.LoginView"
+             xmlns:tool="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.BindingContext>
-        <ViewModel:ViewModel/>
+        <local:ViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
@@ -20,28 +20,15 @@
                              HorizontalOptions="Start" VerticalOptions="Start" Margin="20,20"  Command="{Binding BackButtonClick}"
                              CornerRadius="5" Grid.Column="0" Style="{StaticResource ThemeImageStyle}" />
                 <Label Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
-           Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="19" />
+                       Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="19" />
             </Grid>
-            <Label Text="Регистрация" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" />
+            <Label Text="Подтверждение" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" />
             <Frame Background="Transparent" Padding="0" Margin="30,50,30,5">
                 <StackLayout Padding="0" >
-                    <Label  Text="Логин" FontSize="19" Margin="15,0,0,0"  />
+                    <Label  Text="Введите пароль" FontSize="19" Margin="15,0,0,0"  />
                     <Frame  BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"
-Padding="5" CornerRadius="20" BorderColor="Gray" >
-                        <Entry BackgroundColor="Transparent" Text="{Binding Login}" >
-                            <Entry.Effects>
-                                <tool:RemoveBorderEffect/>
-                            </Entry.Effects>
-                        </Entry>
-                    </Frame>
-                </StackLayout>
-            </Frame>
-            <Frame Background="Transparent" Padding="0" Margin="30,20,30,5">
-                <StackLayout Padding="0" >
-                    <Label  Text="Email" FontSize="19" Margin="15,0,0,0"  />
-                    <Frame  BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"
-Padding="5" CornerRadius="20" BorderColor="Gray" >
-                        <Entry BackgroundColor="Transparent" Text="{Binding Email}" >
+                            Padding="5" CornerRadius="20" BorderColor="Gray" >
+                        <Entry BackgroundColor="Transparent" Text="{Binding Password}" >
                             <Entry.Effects>
                                 <tool:RemoveBorderEffect/>
                             </Entry.Effects>
@@ -56,7 +43,7 @@ Padding="5" CornerRadius="20" BorderColor="Gray" >
                         Command="{Binding BackButtonClick}"
                         BackgroundColor="{AppThemeBinding Dark=#9838383,Light=#B5B5B5}"/>
                 <Button Text="Далее" CornerRadius="20" HorizontalOptions="Center" Grid.Column="1" WidthRequest="110" 
-                        Command="{Binding RegistrPageButtonNextClick}"
+                        Command="{Binding }"
                          BackgroundColor="{AppThemeBinding Dark=#9838383,Light=#B5B5B5}"/>
             </Grid>
         </StackLayout>

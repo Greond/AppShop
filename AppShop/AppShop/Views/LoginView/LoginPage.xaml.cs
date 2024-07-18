@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppShop.Views.RegistrView
+namespace AppShop.Views.LoginView
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegistrPage : ContentPage
+	public partial class LoginPage : ContentPage
 	{
-		public RegistrPage ()
+		public LoginPage ()
 		{
 			InitializeComponent ();
 		}

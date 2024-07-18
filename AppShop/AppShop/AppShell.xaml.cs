@@ -10,6 +10,8 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 using AppShop.Pages;
 using AppShop.Views;
+using AppShop.Views.RegistrView;
+using AppShop.Views.LoginView;
 
 namespace AppShop
 {
@@ -20,7 +22,11 @@ namespace AppShop
 		{
 			InitializeComponent ();
 			Routing.RegisterRoute("ItemPage", typeof(ItemPage));
-		}
+			Routing.RegisterRoute("RegistrPage", typeof(RegistrPage));
+			Routing.RegisterRoute("PasswordPage", typeof(PasswordPage));
+			Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("LoginPage2", typeof(LoginPage2));
+        }
 		public ICommand ExitCommand => new Command(() =>
 		{
 			Application.Current.Quit();

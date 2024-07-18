@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppShop.Views.AboutPage"
+             xmlns:Local="clr-namespace:AppShop.Pages.AboutPage">
+    <ContentPage.BindingContext>
+        <Local:ViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Color x:Key="FrameBorderColor" >#6D6D6D</Color>
+        <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
+        <Color x:Key="DarkBorderColor">#565656</Color>
+
+        <Style TargetType="Frame"  >
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+        </Style>
+        <Style TargetType="Frame" x:Key="FrameBorderStyle">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+            <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource DarkBorderColor},Light={StaticResource FrameBorderColor2}}" />
+            <Setter Property="HasShadow" Value="False"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="0" Spacing="0" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Source="{AppThemeBinding Light=menu.png , Dark=lightmenu.png}" HeightRequest="25" WidthRequest="30" 
+                          x:Name="MenuButton"
+                          Command="{Binding MenuClicked}" CommandParameter="{x:Reference MenuButton}" 
+                          HorizontalOptions="Start" VerticalOptions="Start" Margin="20,20" 
+                          CornerRadius="5" Grid.Column="0" Style="{StaticResource ThemeImageStyle}" />
+                <Label Text="About" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+         Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="30" />
+                <ImageButton Style="{StaticResource ThemeImageStyle}"
+               Grid.Column="2" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="25" WidthRequest="30" Margin="0,0,10,0" CornerRadius="5" />
+            </Grid>
+            <Label Text="Личная Жалоба #1" FontSize="20" Margin="25,10,0,10" FontAttributes="Bold" />
+            <Frame Padding="0" CornerRadius="15" Margin="10,0,10,0" Style="{StaticResource FrameBorderStyle}" >
+                <Label Text="Никому ненужное приложение зачемто дорабатывается до нормального вида.
+         Интересно вот ктото заказывает приложение на xamarin forms как будто помойка, ебать я слабый" 
+         TextDecorations="None" HorizontalTextAlignment="Start" FontSize="20" Margin="10,5,10,10" />
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

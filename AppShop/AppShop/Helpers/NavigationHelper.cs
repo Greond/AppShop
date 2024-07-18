@@ -14,7 +14,7 @@ namespace AppShop.Helpers
            await Shell.Current.GoToAsync($"{page}?itemid={IdItem}");
 
         }
-        public async void CloseItemPage()
+        public async void ClosePage()
         {
             await Shell.Current.GoToAsync("..");
         }
