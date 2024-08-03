@@ -6,6 +6,86 @@
     <ContentPage.BindingContext>
         <Local:ViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Color x:Key="FrameBorderColor" >#6D6D6D</Color>
+        <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
+        <Color x:Key="DarkBorderColor">#565656</Color>
+
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor},Light={StaticResource LightThemeBackGColor}}"
+                   CornerRadius="15"
+                   HasShadow="False"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters >
+                                    <Setter Property="BorderColor"
+                                            Value="{AppThemeBinding Dark={StaticResource FrameBorderColor2}, Light={StaticResource DarkBorderColor}}" />
+                                    <Setter TargetName="check" 
+                                            Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                           Value="{StaticResource DarkThemeBackGColor}"/>
+                                    <Setter Property="BorderColor"
+                                            Value="{StaticResource DarkThemeBackGColor}"/>
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="0"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          Padding="0"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="#565656"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 />
+                        <Ellipse x:Name="check"
+                                 Fill="white"
+                                 WidthRequest="13"
+                                 HeightRequest="13"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Margin="0.5,0.5,0,0"
+                                 />
+                    </Grid>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton" x:Key="ImageRadioButtonStyle">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+        <Style TargetType="Frame"  >
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+        </Style>
+        <Style TargetType="Frame" x:Key="FrameBorderStyle">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
+            <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource DarkBorderColor},Light={StaticResource FrameBorderColor2}}" />
+            <Setter Property="HasShadow" Value="False"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -26,7 +106,22 @@
                              Grid.Column="2" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="25"
                              WidthRequest="30" Margin="0,0,10,0" CornerRadius="5" />
             </Grid>
-          
+            <ScrollView Orientation="Vertical">
+                <Frame  >
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton BackgroundColor="Aqua" Style="{StaticResource ImageRadioButtonStyle}" Value="Test">
+                            <RadioButton.Content >
+                             
+                                    <Label Text="Test" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"/>
+                            
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource ImageRadioButtonStyle}"/>  
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
