@@ -183,5 +183,23 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\graybackarrow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\mobiledevelopment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lightmobileapps.png" />
+    <AndroidResource Include="Resources\drawable\mobileapps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lightmobileappsv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\mobiledevelopmentv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lovely.png" />
+    <AndroidResource Include="Resources\drawable\lightlovely.png" />
+    <Content Include="Resources\drawable\yahoo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppShop.Pages.SettingPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace AppShop.Views
 		public SettingPage ()
 		{
 			InitializeComponent ();
+		}
+
+		private void ThemeChanged(object sender, CheckedChangedEventArgs e)
+		{
+			ViewModel viewModel = new ViewModel();
+		
 		}
 	}
 }

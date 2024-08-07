@@ -4,7 +4,9 @@
              x:Class="AppShop.App">
     <Application.Resources>
         <ResourceDictionary>
-
+            <Color x:Key="GreyColor">#515151</Color>
+            <Color x:Key="GreyColor2">#A7A7A7</Color>
+            
             <Color x:Key="BackColor">#E0E0E0</Color>
             <Color x:Key="TextColor">#0E0F20</Color>
 

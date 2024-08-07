@@ -41,7 +41,8 @@
             </Grid>
             <ScrollView Orientation="Vertical">
                 <StackLayout Padding="10">
-                    <ImageButton BorderColor="Red" BorderWidth="2" CornerRadius="100" HeightRequest="150" Margin="95,0,95,0" />
+                    <ImageButton BorderColor="Gray" BorderWidth="1" CornerRadius="100" HeightRequest="150"
+                                 Margin="95,0,95,0" Source="{AppThemeBinding Dark=lightlovely.png,Light=lovely.png}" />
                     <Frame Padding="0" BackgroundColor="{StaticResource FrameBorderColor}"
                            CornerRadius="15" > <!--Frame with information of user-->
                         <StackLayout Orientation="Vertical" Padding="0" Spacing="1" >

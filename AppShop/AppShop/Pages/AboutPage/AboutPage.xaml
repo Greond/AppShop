@@ -42,7 +42,7 @@
             <Label Text="Личная Жалоба #1" FontSize="20" Margin="25,10,0,10" FontAttributes="Bold" />
             <Frame Padding="0" CornerRadius="15" Margin="10,0,10,0" Style="{StaticResource FrameBorderStyle}" >
                 <Label Text="Никому ненужное приложение зачемто дорабатывается до нормального вида.
-         Интересно вот ктото заказывает приложение на xamarin forms как будто помойка, ебать я слабый" 
+         Интересно вот кто-то заказывает приложение на xamarin forms, как будто помойка." 
          TextDecorations="None" HorizontalTextAlignment="Start" FontSize="20" Margin="10,5,10,10" />
             </Frame>
         </StackLayout>
