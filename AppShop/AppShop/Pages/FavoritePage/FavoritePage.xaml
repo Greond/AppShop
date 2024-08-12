@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppShop.Views.AboutPage"
-             xmlns:Local="clr-namespace:AppShop.Pages.AboutPage"
-             xmlns:ContentView="clr-namespace:AppShop.ContentView">
+             x:Class="AppShop.Views.FavoritePage"
+             xmlns:ContentView="clr-namespace:AppShop.ContentView"
+             xmlns:Local="clr-namespace:AppShop.Pages.FavoritePage">
     <ContentPage.BindingContext>
         <Local:ViewModel/>
     </ContentPage.BindingContext>
@@ -22,15 +22,12 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="0" Spacing="0" >
-            <ContentView:PagesHeader TitleText="About"/>
-            <StackLayout Padding="0" Spacing="0">
-                <Label Text="Личная Жалоба #1" FontSize="20" Margin="25,10,0,10" FontAttributes="Bold" />
-                <Frame Padding="0" CornerRadius="15" Margin="10,0,10,0" Style="{StaticResource FrameBorderStyle}" >
-                    <Label Text="Никому ненужное приложение зачемто дорабатывается до нормального вида.
-                           Интересно вот кто-то заказывает приложение на xamarin forms, как будто помойка." 
-                           TextDecorations="None" HorizontalTextAlignment="Start" FontSize="20" Margin="10,5,10,10" />
-                </Frame>
+        <StackLayout Padding="0" Spacing="0">
+            <ContentView:PagesHeader TitleText="Favorite" /> <!-- Header Of Page-->
+            <StackLayout  > <!--Content of page-->
+                
+                
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

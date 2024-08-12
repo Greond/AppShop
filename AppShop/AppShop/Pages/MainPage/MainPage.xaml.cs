@@ -44,18 +44,6 @@ namespace AppShop.Views
             
 		}
 
-        private bool canclick = true;
-        private  async void Menu_Clicked(object sender, EventArgs e)
-        {
-            if(!canclick) { return; }
-            canclick = false;
-            ImageButton btn = (ImageButton)sender;
-            await btn.AnimateButtonPull();
-            Shell.Current.FlyoutIsPresented = true;
-            canclick = true;
-            
-        }
-        
         private void Menu_Pressed(object sender, EventArgs e)
         {
 

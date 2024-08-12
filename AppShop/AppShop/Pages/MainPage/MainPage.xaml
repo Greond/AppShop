@@ -15,21 +15,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout   >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <ImageButton Source="{AppThemeBinding Light=menu.png , Dark=lightmenu.png}" HeightRequest="25" WidthRequest="30" Clicked="Menu_Clicked"  Pressed="Menu_Pressed"
-                 HorizontalOptions="Start" VerticalOptions="Start" Margin="20,20" 
-                             CornerRadius="5" Focused="Menu_Focused" Grid.Column="0" Style="{StaticResource ThemeImageStyle}" />
-                <Label Text="ZiP" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
-                       Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="30" />
-                <ImageButton Source="{AppThemeBinding Light=user.png ,Dark=lightuser.png}" Style="{StaticResource ThemeImageStyle}"
-                             Grid.Column="2" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="25" WidthRequest="30" Margin="0,0,10,0" CornerRadius="5" />
-            </Grid>
+            <MyContentViews:PagesHeader TitleText="ZIP" />
             <Frame CornerRadius="20" Padding="3" Margin="20,5,20,5" Style="{StaticResource ThemeElementStyle}" >
                 <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
                 </SearchBar>

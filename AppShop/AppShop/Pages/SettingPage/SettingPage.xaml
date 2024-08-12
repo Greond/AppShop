@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppShop.Views.SettingPage"
-             xmlns:Local="clr-namespace:AppShop.Pages.SettingPage">
+             xmlns:Local="clr-namespace:AppShop.Pages.SettingPage"
+             xmlns:ContentView="clr-namespace:AppShop.ContentView">
     <ContentPage.BindingContext>
         <Local:ViewModel/>
     </ContentPage.BindingContext>
@@ -89,24 +90,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <ImageButton Source="{AppThemeBinding Light=menu.png , Dark=lightmenu.png}" HeightRequest="25" WidthRequest="30" 
-                 x:Name="MenuButton"
-                 Command="{Binding MenuClicked}" CommandParameter="{x:Reference MenuButton}" 
-                 HorizontalOptions="Start" VerticalOptions="Start" Margin="20,20" 
-                 CornerRadius="5" Grid.Column="0" Style="{StaticResource ThemeImageStyle}" />
-                <Label Text="Settings" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
-                        Grid.Column="1" TextColor="{AppThemeBinding Light=#131313 ,Dark= #EDEDED}" FontSize="30" />
-                <ImageButton Style="{StaticResource ThemeImageStyle}"
-                             Grid.Column="2" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="25"
-                             WidthRequest="30" Margin="0,0,10,0" CornerRadius="5" />
-            </Grid>
+            <ContentView:PagesHeader TitleText="Settings" />
             <ScrollView Orientation="Vertical" Padding="10">
                 <Frame CornerRadius="15"  >
                     <StackLayout Orientation="Vertical">

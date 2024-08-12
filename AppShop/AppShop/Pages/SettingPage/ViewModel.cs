@@ -48,23 +48,6 @@ namespace AppShop.Pages.SettingPage
             }
         }
 
-        private ICommand _MenuClicked;
-        public ICommand MenuClicked
-        {
-            get
-            {
-                return _MenuClicked ??
-                    (_MenuClicked = new MvvmHelpers.Commands.Command(async (obj) =>
-                    {
-                        if (!_MenuClicked.CanExecute(_MenuClicked)) { return; }
-                        ImageButton btn = (ImageButton)obj;
-                        await btn.AnimateButtonPull();
-                        Shell.Current.FlyoutIsPresented = true;
-
-                    }));
-            }
-        }
-
         void ChangeTheme()
         {
             if (_LightTheme)
