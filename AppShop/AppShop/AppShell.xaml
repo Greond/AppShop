@@ -141,7 +141,7 @@
         <Tab Title="Main" Icon="main.png">
             <ShellContent ContentTemplate="{DataTemplate views:MainPage}"/>
         </Tab>
-        <Tab Title="Favorites" Icon="heart.png">
+        <Tab Title="Search" Icon="search.png">
             <ShellContent ContentTemplate="{DataTemplate views:FavoritePage}"/>
         </Tab>
         <Tab Title="Сart" Icon="shopcart.png">

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AppShop.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppShop.Views
+namespace AppShop.Pages.Search
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FavoritePage : ContentPage
+	public partial class SearchPage : ContentPage
 	{
-		public FavoritePage ()
+		public SearchPage ()
 		{
 			InitializeComponent ();
 		}

@@ -199,6 +199,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\lovely.png" />
     <AndroidResource Include="Resources\drawable\lightlovely.png" />
+    <AndroidResource Include="Resources\drawable\lightsearch.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
     <Content Include="Resources\drawable\yahoo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
