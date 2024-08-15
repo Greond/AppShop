@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppShop.Pages
+namespace AppShop.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[QueryProperty(nameof(ItemId), "itemid")]

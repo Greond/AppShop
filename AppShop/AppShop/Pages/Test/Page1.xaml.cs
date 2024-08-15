@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppShop.Views
+namespace AppShop.Pages.Test
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProfilePage : ContentPage
+	public partial class Page1 : ContentPage
 	{
-		public ProfilePage ()
+		public Page1 ()
 		{
 			InitializeComponent ();
 		}

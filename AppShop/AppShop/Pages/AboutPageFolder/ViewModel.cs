@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace AppShop.Pages.AboutPage
+namespace AppShop.Pages.AboutPageFolder
 {
     class ViewModel : BaseViewModel
     {

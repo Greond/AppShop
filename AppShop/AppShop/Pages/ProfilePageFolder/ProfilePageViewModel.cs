@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-namespace AppShop.Pages.ProfilePage
+namespace AppShop.Pages.ProfilePageFolder
 {
     internal class ProfilePageViewModel : BaseViewModel
     {

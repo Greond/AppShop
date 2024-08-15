@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AppShop.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CartPage : ContentPage
+	public partial class AboutPage : ContentPage
 	{
-		public CartPage ()
+		public AboutPage ()
 		{
 			InitializeComponent ();
 		}

@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace AppShop.Pages.SettingPage
+namespace AppShop.Pages.SettingPageFolder
 {
     internal class ViewModel : BaseViewModel
     {

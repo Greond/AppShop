@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views ="clr-namespace:AppShop.Views"
+             xmlns:Pages ="clr-namespace:AppShop.Pages"
              x:Class="AppShop.AppShell"
        
              Style="{StaticResource ShellThemeStyle}"
@@ -139,21 +139,21 @@
 
     <FlyoutItem Title="Home" FlyoutIcon="{AppThemeBinding Dark=lighthouse.png, Light=house.png}" FlyoutDisplayOptions="AsSingleItem">
         <Tab Title="Main" Icon="main.png">
-            <ShellContent ContentTemplate="{DataTemplate views:MainPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate Pages:MainPage}"/>
         </Tab>
         <Tab Title="Search" Icon="search.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritePage}"/>
+            <ShellContent ContentTemplate="{DataTemplate Pages:SearchPage}"/>
         </Tab>
         <Tab Title="Сart" Icon="shopcart.png">
-            <ShellContent ContentTemplate="{DataTemplate views:CartPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate Pages:CartPage}"/>
         </Tab>
         <Tab Title="More" Icon="more.png"  >
-            <ShellContent ContentTemplate="{DataTemplate views:MorePage}"  />
+            <ShellContent ContentTemplate="{DataTemplate Pages:MorePage}"  />
         </Tab>
     </FlyoutItem>
-    <ShellContent Title="Profile" FlyoutIcon="{AppThemeBinding Dark=lightuser.png , Light=user.png}"  ContentTemplate="{DataTemplate views:ProfilePage}"/>
-    <ShellContent Title="Setting" FlyoutIcon="{AppThemeBinding Dark=lightsettings.png, Light=settings.png}" ContentTemplate="{DataTemplate views:SettingPage}"/>
-    <ShellContent Title="About" FlyoutIcon="{AppThemeBinding Dark=lightabout.png, Light=about.png}" ContentTemplate="{DataTemplate views:AboutPage}"/>
+    <ShellContent Title="Profile" FlyoutIcon="{AppThemeBinding Dark=lightuser.png , Light=user.png}"  ContentTemplate="{DataTemplate Pages:ProfilePage}"/>
+    <ShellContent Title="Setting" FlyoutIcon="{AppThemeBinding Dark=lightsettings.png, Light=settings.png}" ContentTemplate="{DataTemplate Pages:SettingPage}"/>
+    <ShellContent Title="About" FlyoutIcon="{AppThemeBinding Dark=lightabout.png, Light=about.png}" ContentTemplate="{DataTemplate Pages:AboutPage}"/>
 
     <MenuItem Text="Exit" IconImageSource="{AppThemeBinding Dark=lightexit.png, Light=exit.png}"  Clicked="ExitItem_Clicked"/>
 </Shell>

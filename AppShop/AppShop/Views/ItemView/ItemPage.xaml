@@ -5,7 +5,7 @@
              xmlns:Converters="clr-namespace:AppShop.Converters"
              xmlns:local="clr-namespace:AppShop.Views.ItemView"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             x:Class="AppShop.Pages.ItemPage">
+             x:Class="AppShop.Views.ItemPage">
 
     <ContentPage.Resources>
         <Color x:Key="FrameBorderColor" >#6D6D6D</Color>

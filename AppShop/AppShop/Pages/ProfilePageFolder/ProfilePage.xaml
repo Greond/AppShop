@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppShop.Views.ProfilePage"
-             xmlns:ViewModel="clr-namespace:AppShop.Pages.ProfilePage"
+             x:Class="AppShop.Pages.ProfilePage"
+             xmlns:ViewModel="clr-namespace:AppShop.Pages.ProfilePageFolder"
              xmlns:ContentView="clr-namespace:AppShop.ContentView">
     <ContentPage.BindingContext>
         <ViewModel:ProfilePageViewModel/>

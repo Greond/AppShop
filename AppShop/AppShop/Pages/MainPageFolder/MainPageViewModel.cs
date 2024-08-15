@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppShop.Pages.MainPage
+namespace AppShop.Pages.MainPageFolder
 {
     internal class MainPageViewModel : BaseViewModel
     {
