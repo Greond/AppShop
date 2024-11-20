@@ -5,22 +5,22 @@ using Xamarin.Forms;
 
 namespace AppShop.Helpers
 {
-     class NavigationHelper :NavigationPage , INavigationHelper
+     class NavigationHelper :NavigationPage //, INavigationHelper
     {
         
-        public async void OpenItemPage(string page,string IdItem)
+        public static async void OpenItemPage(string page,string IdItem)
         {
           
            await Shell.Current.GoToAsync($"{page}?itemid={IdItem}");
 
         }
-        public async void ClosePage()
+        public static async void ClosePage()
         {
             await Shell.Current.GoToAsync("..");
         }
-        public new void DisplayAlert(string Title, string message, string buttontext)
+        public static new async void DisplayAlert(string Title, string message, string buttontext)
         {
-            DisplayAlert(Title, message, buttontext);
+            await Application.Current.MainPage.DisplayAlert(Title, message, buttontext);
         }
     }
 }

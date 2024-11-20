@@ -5,7 +5,11 @@
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
              x:Class="AppShop.Pages.MainPage"
              xmlns:Local="clr-namespace:AppShop.Pages.MainPageFolder"
+             x:Name="page"
             >
+    <ContentPage.BindingContext>
+        <Local:MainPageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
 
         <ResourceDictionary>
@@ -15,14 +19,14 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout   >
-            <MyContentViews:PagesHeader TitleText="ZIP" />
+            <MyContentViews:PagesHeader TitleText="ZIP"  />
             <Frame CornerRadius="20" Padding="3" Margin="20,5,20,5" Style="{StaticResource ThemeElementStyle}" >
                 <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
                 </SearchBar>
             </Frame>
 
 
-            <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never"  >
+            <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never" >
                 <StackLayout Orientation="Horizontal">
                     <MyContentViews:CategoryItemView TitleText="Компьютеры&#10;и перефирия" Source="pc.png" x:Name="item1" >
                         <ContentView.GestureRecognizers>
@@ -55,14 +59,16 @@
 
                 </StackLayout>
             </ScrollView>
-            <ScrollView x:Name="ScrollView" HeightRequest="190" Orientation="Horizontal" HorizontalScrollBarVisibility="Never"  >
-                <StackLayout Orientation="Horizontal"  x:Name="ActionLayout"  >
-
-
-                </StackLayout>
-            </ScrollView>
-
-
+            <CollectionView x:Name="ActionContent" ItemsSource="{Binding ActionViewData}"
+                            HeightRequest="200" HorizontalScrollBarVisibility="Never" ItemsLayout="HorizontalList" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <MyContentViews:ActionContentView TitleText="{Binding Name}" ButtonText="Подробнее" IdItem="{Binding ID}" 
+                                                          NewPrice="{Binding Price}" OldPrice="{Binding OldPrice}" Describe="{Binding Description}" ImageSource="{Binding Icon}"  />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Load Page" Command="{Binding LoadPageCommand}"/>
         </StackLayout>  
     </ContentPage.Content>
 </ContentPage>

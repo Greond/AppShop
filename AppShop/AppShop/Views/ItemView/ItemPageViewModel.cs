@@ -9,6 +9,7 @@ using System.Windows.Input;
 using AppShop.Pages;
 using AppShop.DataBase;
 using Xamarin.Forms;
+using AppShop.DataBase.DataModels;
 
 namespace AppShop.Views.ItemView
 {
@@ -19,12 +20,12 @@ namespace AppShop.Views.ItemView
         public bool IsRefreshing
         { get { return _IsRefreshing; } set { _IsRefreshing = value; } }
 
-        private ItemsData _Item;
-        public ItemsData Item {
+        private Item _Item;
+        public Item Item {
             get { return _Item; }
             set{ 
             _Item = value;
-            OnPropertyChanged();
+            OnPropertyChanged(nameof(Item));
             }
         }
         private ImageSource _ItemRatingImage;
@@ -33,37 +34,35 @@ namespace AppShop.Views.ItemView
             set
             {
                 _ItemRatingImage = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ItemRatingImage));
             }
                 
                 }
 
         public ICommand RefreshCommand { get; set; }
-        public ItemPageViewModel(string ID)
+        public ItemPageViewModel(ulong ID)
         {
             RefreshCommand = new MvvmHelpers.Commands.Command(() => OnRefresh());
-            SetItem(ID);
-            loadData();
+            LoadItem(ID);
+            SetData();
         }
         private void OnRefresh()
         {
-           //  Thread thread = new Thread(async () => { await loadData(); });
-            // thread.Start();
+           Thread thread = new Thread(async () => { await SetData(); });
+           thread.Start();
         }
-        protected internal void SetItem(string id)
+        protected internal async void LoadItem(ulong id)
         {
-            ItemsDataBaseLoader Loader = new ItemsDataBaseLoader();
 
-            ItemsData item = Loader.LoadItem(id);
-            Item = item;
+            Item = await WebApiConnector.GetItemById(id); 
         }
-        public  Task loadData()
+        private Task SetData()
         {
             IsRefreshing = true;
             try
             {
                 string ratingimagesource = $"rating{Item.Stars}.png";
-                ItemRatingImage = ImageSource.FromFile(ratingimagesource);
+                ItemRatingImage = ImageSource.FromFile(ratingimagesource); //установка данных товара
                 
                 
                 IsRefreshing = false;

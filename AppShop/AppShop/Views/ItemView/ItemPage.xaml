@@ -191,6 +191,7 @@
                             </StackLayout>
                         </StackLayout>
                     </Frame>
+                    <!--Описание-->
                     <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
                         <Frame.Behaviors>
                             <xamanimation:AnimateProgressDouble 
@@ -199,7 +200,7 @@
                                  From="1"
                                  To="0.75"
                                  Minimum="700"
-                                 Maximum="900"/>                
+                                 Maximum="900"/>
                             <xamanimation:AnimateProgressDouble 
                                  TargetProperty="VisualElement.Opacity"
                                  Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
@@ -216,27 +217,90 @@
                                  Maximum="900"/>
                         </Frame.Behaviors>
                         <StackLayout>
-                            <Label Text="Описание" FontSize="16" FontAttributes="Bold" />
-                            
-                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}"
-                                   >
-                                <Label  Text="{Binding Item.MainDescription}"  />
+                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="2" >
+                                <Image Source="{AppThemeBinding Dark=lighttextdescription.png,Light=textdescription.png}" HeightRequest="25" />
+                                <Label Text="Описание" FontSize="16" FontAttributes="Bold" />
+                            </StackLayout>
+                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} 
+                                ,Light={StaticResource LightThemeBackGColor}}" >
+                                <Label  Text="{Binding Item.MainDescription}" FontSize="15"  />
                             </Frame>
                         </StackLayout>
                     </Frame>
+                    <!--Характеристики-->
                     <Frame Visual="Material"  Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
+                        <Frame.Behaviors>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Scale"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.75"
+                                 Minimum="700"
+                                 Maximum="900"/>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.9"
+                                 Minimum="700"
+                                 Maximum="900"/>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="0.9"
+                                 To="0"
+                                 Minimum="700"
+                                 Maximum="900"/>
+                        </Frame.Behaviors>
                         <StackLayout>
-                            <Label Text="Характеристики" FontSize="16" FontAttributes="Bold" />
-                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}"
-        >
-                                <Label  Text="{Binding Item.Specifications}"  />
+                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="2" >
+                                <Image Source="{AppThemeBinding Dark=lighttools.png,Light=tools.png}" HeightRequest="25" />
+                                <Label Text="Характеристики" FontSize="16" FontAttributes="Bold" />
+                            </StackLayout>
+                            <Frame  CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}">
+                                <StackLayout HorizontalOptions="Start" VerticalOptions="End" Spacing="4" Padding="0" 
+                                             BindableLayout.EmptyView="Характеристике не предназначены для данного товара" Orientation="Vertical"
+                                             BindableLayout.ItemsSource="{Binding Item.Specifications,Converter={Converters:ItemTextConverter},ConverterParameter='|;•'}">
+                                </StackLayout>
                             </Frame>
-
                         </StackLayout>
                     </Frame>
+                    <!--Отзывы-->
                     <Frame Visual="Material" Padding="15" BorderColor="Gray" CornerRadius="15" Margin="5,5,5,5" >
+                        <Frame.Behaviors>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Scale"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.75"
+                                 Minimum="700"
+                                 Maximum="900"/>        
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="1"
+                                 To="0.9"
+                                 Minimum="700"
+                                 Maximum="900"/>
+                            <xamanimation:AnimateProgressDouble 
+                                 TargetProperty="VisualElement.Opacity"
+                                 Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                 From="0.9"
+                                 To="0"
+                                 Minimum="700"
+                                 Maximum="900"/>
+                        </Frame.Behaviors>
                         <StackLayout>
-                            
+                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="2" >
+                                <Image Source="{AppThemeBinding Dark=lightfeedback.png,Light=feedback.png}" HeightRequest="25" />
+                                <Label Text="Отзывы" FontSize="16" FontAttributes="Bold" />
+                            </StackLayout>
+                            <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}">
+                                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="End" Spacing="4" Padding="0"
+                                             BindableLayout.EmptyView="Отзывов пока нет" Orientation="Vertical"
+                                             >
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </Frame>
                 </StackLayout>

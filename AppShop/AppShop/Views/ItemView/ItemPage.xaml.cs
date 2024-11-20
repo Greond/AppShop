@@ -24,10 +24,10 @@ namespace AppShop.Views
         {
             set
             {
-                LoadItem(value);
+                LoadItem(Convert.ToUInt64(value));
             }
         }
-		private void LoadItem(string _ItemId)
+		private void LoadItem(ulong _ItemId)
 		{
 			try
 			{

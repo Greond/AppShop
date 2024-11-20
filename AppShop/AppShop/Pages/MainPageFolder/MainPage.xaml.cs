@@ -1,49 +1,37 @@
 ﻿using AppShop.ContentView;
 using AppShop.DataBase;
-using AppShop.ViewEvent;
+using AppShop.DataBase.DataModels;
+using AppShop.Pages.MainPageFolder;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppShop.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainPage : ContentPage
 	{
+        static MainPageViewModel ViewModel { get; set; }
 		public MainPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new MainPageEvent();
 
-            ItemsDataBaseLoader itemsDataBaseLoader = new ItemsDataBaseLoader ();
-            List<ItemsData> items = itemsDataBaseLoader.LoadAllStockItem();
-            if (items.Count == 0) { return; }
-            for (int i = 0; i < items.Count; i++)
-            {
-                ItemsData item = items[i];
-                ActionContentView actionContentView = new ActionContentView();
-                ActionLayout.Children.Add(actionContentView);
-                actionContentView.TitleText = item.Name;
-                actionContentView.Description = item.Description;
-                actionContentView.ButtonText = "Подробнее";
-                actionContentView.NewPrice = item.Price.ToString();
-                actionContentView.OldPrice = item.OldPrice.ToString();
-                actionContentView.imageSource = item.Icon;
-                actionContentView.IdItem = item.ID;
-                actionContentView.ButtonCommandParameter = actionContentView;
-                actionContentView.SetBinding(ActionContentView.ButtonCommandProperty, new Binding("ActionButtonClick"));
+            ViewModel = new MainPageFolder.MainPageViewModel();
+            BindingContext = ViewModel;
+            ViewModel.LoadPageCommand.Execute(this);
 
-            }
-           
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            //ActionContent.ItemsSource = await App.ItemsDB.GetItemsAsync();
             
-		}
-
+        }
         private void Menu_Pressed(object sender, EventArgs e)
         {
 

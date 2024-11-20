@@ -12,6 +12,7 @@
         <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
         <Color x:Key="DarkBorderColor">#565656</Color>
 
+        
         <ControlTemplate x:Key="RadioButtonTemplate">
             <Frame
                    BackgroundColor="{AppThemeBinding Dark={StaticResource GreyColor},Light={StaticResource GreyColor2}}"
@@ -92,62 +93,79 @@
         <StackLayout>
             <ContentView:PagesHeader TitleText="Settings" />
             <ScrollView Orientation="Vertical" Padding="10">
-                <Frame CornerRadius="15"  >
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="Тема приложения" FontSize="20" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,-10,0,0"/>
-                        <StackLayout Orientation="Horizontal" 
-                                 RadioButtonGroup.GroupName="ThemeRadioButtons"
-                                >
-                        <RadioButton Value="ThemeBinding" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons"
-                                     IsChecked="{Binding PhoneBindingTheme}" >
-                            <RadioButton.Content >
-                                <StackLayout Padding="0" Spacing="0">
-                                        <Image Source="{AppThemeBinding Dark=mobiledevelopment.png,Light=mobiledevelopmentv2.png}"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="CenterAndExpand"
-                                           HeightRequest="75"
-                                           WidthRequest="75"/>
-                                    <Label Text="Phone binding" 
-                                           FontSize="13"
-                                           MaxLines="1"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="End"/>
+                <StackLayout>
+                    <!--theme setting-->
+                    <Frame CornerRadius="15"  >
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Тема приложения" FontSize="20" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,-10,0,0"/>
+                            <StackLayout Orientation="Horizontal" 
+                 RadioButtonGroup.GroupName="ThemeRadioButtons"
+                >
+                                <RadioButton Value="ThemeBinding" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons"
+                     IsChecked="{Binding PhoneBindingTheme}" >
+                                    <RadioButton.Content >
+                                        <StackLayout Padding="0" Spacing="0">
+                                            <Image Source="{AppThemeBinding Dark=mobiledevelopment.png,Light=mobiledevelopmentv2.png}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="75"
+                           WidthRequest="75"/>
+                                            <Label Text="Phone binding" 
+                           FontSize="13"
+                           MaxLines="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End"/>
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Value="DarkTheme" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons" 
+                     IsChecked="{Binding DarkTheme}">
+                                    <RadioButton.Content >
+                                        <StackLayout>
+                                            <Image Source="mobileapps.png"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="70"
+                           WidthRequest="70"/>
+                                            <Label Text="Dark" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="End"/>
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Value="LightTheme" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons"
+                     IsChecked="{Binding LightTheme}">
+                                    <RadioButton.Content >
+                                        <StackLayout>
+                                            <Image Source="{AppThemeBinding Dark=lightmobileapps.png,Light=lightmobileappsv2.png}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand"
+                               HeightRequest="70"
+                               WidthRequest="70"/>
+                                            <Label Text="Light" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="End"/>
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <!--Beta setting-->
+                    <Frame CornerRadius="15"  >
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Beta setting" FontSize="20" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,-10,0,0"/>
+                            <Frame Style="{StaticResource ThemeElementStyle}" >
+                                <StackLayout >
+                                    <Label Text="ApiUrl"/>
+                                    <Entry  x:Name="Url" />
+                                    <Button Text="Try connect API" Command="{Binding TryConnectAPI}" CommandParameter="{x:Reference Url}"/>
                                 </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Value="DarkTheme" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons" 
-                                     IsChecked="{Binding DarkTheme}">
-                            <RadioButton.Content >
-                                <StackLayout>
-                                    <Image Source="mobileapps.png"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="CenterAndExpand"
-                                           HeightRequest="70"
-                                           WidthRequest="70"/>
-                                    <Label Text="Dark" 
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="End"/>
-                                </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Value="LightTheme" Style="{StaticResource ImageRadioButtonStyle}" GroupName="ThemeRadioButtons"
-                                     IsChecked="{Binding LightTheme}">
-                            <RadioButton.Content >
-                                    <StackLayout>
-                                        <Image Source="{AppThemeBinding Dark=lightmobileapps.png,Light=lightmobileappsv2.png}"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="CenterAndExpand"
-                                               HeightRequest="70"
-                                               WidthRequest="70"/>
-                                        <Label Text="Light" 
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="End"/>
-                                    </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                       </StackLayout>
-                    </StackLayout>
-                </Frame>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

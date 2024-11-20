@@ -63,5 +63,22 @@ namespace AppShop.Pages.SettingPageFolder
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
             }
         }
+
+        private ICommand _TryConnectAPI;
+        public ICommand TryConnectAPI
+        {
+            get
+            {
+                return _TryConnectAPI ??
+                    (_TryConnectAPI = new MvvmHelpers.Commands.Command(async (obj) =>
+                    {
+                        if (!_TryConnectAPI.CanExecute(_TryConnectAPI)) { return; }
+                        Entry entry = obj as Entry;
+                        string url = entry.Text.ToString();
+                        DataBase.WebApiConnector.BaseUrl = url;
+                    }));
+            }
+        }
+
     }
 }
