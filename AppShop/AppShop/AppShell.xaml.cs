@@ -18,7 +18,7 @@ namespace AppShop
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AppShell : Shell
 	{
-		public AppShell ()
+        public AppShell ()
 		{
 			InitializeComponent ();
 			Routing.RegisterRoute("ItemPage", typeof(ItemPage));

@@ -6,7 +6,7 @@
              x:Name="this"
              >
 
-    <Grid BindingContext="{x:Reference this}">
+    <Grid BindingContext="{x:Reference this}" HeightRequest="65">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

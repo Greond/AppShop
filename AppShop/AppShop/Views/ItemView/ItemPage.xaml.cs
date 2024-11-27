@@ -2,12 +2,14 @@
 using AppShop.Views.ItemView;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
 namespace AppShop.Views
@@ -33,8 +35,9 @@ namespace AppShop.Views
 			{
                 ItemPageViewModel PageViewModel = new ItemPageViewModel(_ItemId); 
                 BindingContext = PageViewModel;
+                PageViewModel.LoadPageCommand.Execute(this);
 			}
-			catch { Console.WriteLine("ItemLoadEror"); }
+			catch { Debug.WriteLine("ItemLoadEror"); }
           
         }
     }

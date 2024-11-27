@@ -5,14 +5,14 @@
              xmlns:ContentView="clr-namespace:AppShop.ContentView"
              xmlns:Local="clr-namespace:AppShop.Pages.SearchPageFolder">
     <ContentPage.BindingContext>
-        <Local:ViewModel/>
+        <Local:SearchPageViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Color x:Key="FrameBorderColor" >#6D6D6D</Color>
         <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
         <Color x:Key="DarkBorderColor">#565656</Color>
 
-        <Style TargetType="Frame"  >
+        <Style TargetType="Frame">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor2},Light={StaticResource LightThemeBackGColor2}}"/>
         </Style>
         <Style TargetType="Frame" x:Key="FrameBorderStyle">
@@ -22,13 +22,20 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="0" Spacing="0">
-            <ContentView:PagesHeader TitleText="Favorite" /> <!-- Header Of Page-->
+        <StackLayout Padding="0" Spacing="0" >
+            <ContentView:PagesHeader TitleText="Search"  /> <!-- Header Of Page-->
             <StackLayout  > <!--Content of page-->
-                <Frame >
-                    
+                <Frame CornerRadius="20" Padding="3" Margin="20,5,20,5" Style="{StaticResource ThemeElementStyle}" >
+                    <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
+                    </SearchBar>
                 </Frame>
-                
+                <CollectionView ItemsSource="{Binding Categories}" HeightRequest="500">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView:CategoryItemView TitleText="{Binding Name}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

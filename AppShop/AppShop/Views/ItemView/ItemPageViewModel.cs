@@ -10,16 +10,13 @@ using AppShop.Pages;
 using AppShop.DataBase;
 using Xamarin.Forms;
 using AppShop.DataBase.DataModels;
+using AppShop.Helpers;
 
 namespace AppShop.Views.ItemView
 {
     internal class ItemPageViewModel : BaseViewModel
     {
-        
-        private bool _IsRefreshing;
-        public bool IsRefreshing
-        { get { return _IsRefreshing; } set { _IsRefreshing = value; } }
-
+        //Item DATA
         private Item _Item;
         public Item Item {
             get { return _Item; }
@@ -29,51 +26,80 @@ namespace AppShop.Views.ItemView
             }
         }
         private ImageSource _ItemRatingImage;
-        public ImageSource ItemRatingImage { 
+        public ImageSource ItemRatingImage 
+        { 
             get { return _ItemRatingImage; }
             set
             {
                 _ItemRatingImage = value;
                 OnPropertyChanged(nameof(ItemRatingImage));
             }
-                
-                }
-
-        public ICommand RefreshCommand { get; set; }
+        }
+        private IEnumerable<string> _ItemSpecifications;
+        public IEnumerable<string> ItemSpecifications {
+            get { return _ItemSpecifications;   }
+            set { 
+                _ItemSpecifications = value;
+                OnPropertyChanged( nameof(ItemSpecifications));
+            }
+        }
+        
+        private string _ItemMainDescripion;
+        public string ItemMainDescripion
+        {
+            get { return _ItemMainDescripion; }
+            set
+            {
+                _ItemMainDescripion = value;
+                OnPropertyChanged(nameof(ItemMainDescripion));
+            }
+        }
+        private object _ItemReviews;
+        public object ItemReviews
+        {
+            get { return _ItemReviews; }
+            set
+            {
+                _ItemReviews = value;
+                OnPropertyChanged(nameof(ItemReviews));
+            }
+        }
+        //Item DATA end
+        //Data Load
+        private bool _IsRefreshing;
+        public bool IsRefreshing
+        { get { return _IsRefreshing; } set { _IsRefreshing = value; } }
+        public ICommand LoadPageCommand { get; set; }
         public ItemPageViewModel(ulong ID)
         {
-            RefreshCommand = new MvvmHelpers.Commands.Command(() => OnRefresh());
-            LoadItem(ID);
-            SetData();
+            LoadPageCommand = new MvvmHelpers.Commands.Command(() => LoadPage(ID)); // fisrt load 
         }
-        private void OnRefresh()
+        private async void LoadPage(ulong id)
         {
-           Thread thread = new Thread(async () => { await SetData(); });
-           thread.Start();
-        }
-        protected internal async void LoadItem(ulong id)
-        {
-
-            Item = await WebApiConnector.GetItemById(id); 
-        }
-        private Task SetData()
-        {
+            if (IsRefreshing)
+            { return; }
             IsRefreshing = true;
+            Item = await WebApiConnector.GetItemById(id); // Load Item From Web
+            await SetData();
+            IsRefreshing = false;
+
+        }
+        private Task SetData()//установка данных товара
+        {
             try
             {
                 string ratingimagesource = $"rating{Item.Stars}.png";
-                ItemRatingImage = ImageSource.FromFile(ratingimagesource); //установка данных товара
-                
-                
-                IsRefreshing = false;
+                ItemRatingImage = ImageSource.FromFile(ratingimagesource);
+                ItemSpecifications = TextConvertHelper.TextToList(Item.Specifications, "|");
+                ItemMainDescripion = Item.MainDescription;
                 return Task.CompletedTask;
             }
             catch (Exception ex)
             {
-                IsRefreshing = false;
                 return Task.FromException( ex );
             }
         }
+        //Data load end
         private ICommand _BackButtonClick;
         public ICommand BackButtonClick
         {

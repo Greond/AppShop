@@ -223,7 +223,7 @@
                             </StackLayout>
                             <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} 
                                 ,Light={StaticResource LightThemeBackGColor}}" >
-                                <Label  Text="{Binding Item.MainDescription}" FontSize="15"  />
+                                <Label  Text="{Binding ItemMainDescripion}" FontSize="15"  />
                             </Frame>
                         </StackLayout>
                     </Frame>
@@ -260,7 +260,12 @@
                             <Frame  CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}">
                                 <StackLayout HorizontalOptions="Start" VerticalOptions="End" Spacing="4" Padding="0" 
                                              BindableLayout.EmptyView="Характеристике не предназначены для данного товара" Orientation="Vertical"
-                                             BindableLayout.ItemsSource="{Binding Item.Specifications,Converter={Converters:ItemTextConverter},ConverterParameter='|;•'}">
+                                             BindableLayout.ItemsSource="{Binding ItemSpecifications}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding}"/>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
@@ -297,8 +302,9 @@
                             </StackLayout>
                             <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkThemeBackGColor} ,Light={StaticResource LightThemeBackGColor}}">
                                 <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="End" Spacing="4" Padding="0"
-                                             BindableLayout.EmptyView="Отзывов пока нет" Orientation="Vertical"
+                                             BindableLayout.EmptyView="Отзывов пока нет" Orientation="Vertical" BindableLayout.ItemsSource="{Binding ItemReviews}"
                                              >
+                                    
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

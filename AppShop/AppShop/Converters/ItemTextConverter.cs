@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace AppShop.Converters
 {
-    class ItemTextConverter : IValueConverter
+     class ItemTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

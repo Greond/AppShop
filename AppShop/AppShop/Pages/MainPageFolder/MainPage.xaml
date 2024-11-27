@@ -20,10 +20,7 @@
     <ContentPage.Content>
         <StackLayout   >
             <MyContentViews:PagesHeader TitleText="ZIP"  />
-            <Frame CornerRadius="20" Padding="3" Margin="20,5,20,5" Style="{StaticResource ThemeElementStyle}" >
-                <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
-                </SearchBar>
-            </Frame>
+
 
 
             <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never" >

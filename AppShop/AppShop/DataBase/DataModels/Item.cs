@@ -16,8 +16,8 @@ namespace AppShop.DataBase.DataModels
         public string Name { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
-        [JsonProperty("productType")]
-        public string ProductType { get; set; }
+        [JsonProperty("productType_id")]
+        public long ProductType_id { get; set; }
         [JsonProperty("price")]
         public double? Price { get; set; }
         [JsonProperty("oldPrice")]
@@ -37,6 +37,6 @@ namespace AppShop.DataBase.DataModels
         [JsonProperty("mainDescription")]
         public string MainDescription { get; set; }
         [JsonProperty("specifications")]
-        public string Specifications { get; set; }
+        public string Specifications {  get; set; }
     }
 }

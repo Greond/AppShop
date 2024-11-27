@@ -23,7 +23,7 @@ namespace AppShop.Pages.MainPageFolder
 
         public MainPageViewModel()
         {
-
+            
         }
         private IEnumerable<Item> _ActionViewData;  
         public  IEnumerable<Item> ActionViewData
@@ -57,30 +57,20 @@ namespace AppShop.Pages.MainPageFolder
             get
             {
                 return _LoadPageCommand ??
-                    (_LoadPageCommand = new MvvmHelpers.Commands.Command( () =>
+                    (_LoadPageCommand = new MvvmHelpers.Commands.Command( async () =>
                     {
-                        Task t = new Task(() => { 
-                        LoadData();
-                        });
-                        t.Start();
-
-                        if (t.IsCompleted)
+                        Task task = LoadData();
+                        if (task.IsCompleted)
                         {
-                            NavigationHelper.DisplayAlert("Получение данных из ДБ", $"Успешно!!!! " +
-                    $"\n \t ", "урА!!");
-                        }    
-                       if (t.IsCanceled)
-                        {
-                             Application.Current.MainPage.DisplayAlert("Получение данных из ДБ вышло с ошибкой",
-                     $" Подключиться к домашей ДБ возможно только через Wi-Fi, в пределах домашней сети" +
-                     $"текущие подключения интернета {Connectivity.ConnectionProfiles.ToList()[0].ToString()}", "ok");
+                            await App.Current.MainPage.DisplayAlert("загрузка страницы", "Успешно", "Ок");
                         }
                     }));
             }
         }
+       
         private async Task LoadData()
         {
-            var Data = await WebApiConnector.GetItemsFromWebApi("Stock", "true");
+            var Data = await WebApiConnector.GetItemsFromWebApi("Stock", "true",10);
             if(Data != null)
             {
                 ActionViewData = Data;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppShop.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -10,9 +11,7 @@ namespace AppShop.Helpers
         
         public static async void OpenItemPage(string page,string IdItem)
         {
-          
-           await Shell.Current.GoToAsync($"{page}?itemid={IdItem}");
-
+            await Shell.Current.GoToAsync($"{page}?itemid={IdItem}");
         }
         public static async void ClosePage()
         {
