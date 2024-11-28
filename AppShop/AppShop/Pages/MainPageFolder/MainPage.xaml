@@ -5,6 +5,7 @@
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
              x:Class="AppShop.Pages.MainPage"
              xmlns:Local="clr-namespace:AppShop.Pages.MainPageFolder"
+             xmlns:Converters="clr-namespace:AppShop.Converters"
              x:Name="page"
             >
     <ContentPage.BindingContext>
@@ -18,54 +19,62 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout   >
-            <MyContentViews:PagesHeader TitleText="ZIP"  />
 
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding LoadPageCommand}">
+            <ScrollView>
 
+                <StackLayout>
+                    <MyContentViews:PagesHeader TitleText="ZIP"  />
 
-            <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never" >
-                <StackLayout Orientation="Horizontal">
-                    <MyContentViews:CategoryItemView TitleText="Компьютеры&#10;и перефирия" Source="pc.png" x:Name="item1" >
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
-                        </ContentView.GestureRecognizers>
-                    </MyContentViews:CategoryItemView>
+                    <ScrollView  Orientation="Horizontal" HeightRequest="150" x:Name="SwipeNewsView" HorizontalScrollBarVisibility="Never" >
+                        <StackLayout Orientation="Horizontal">
+                            <MyContentViews:CategoryItemView TitleText="Компьютеры&#10;и перефирия" Source="pc.png" x:Name="item1" >
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                                </ContentView.GestureRecognizers>
+                            </MyContentViews:CategoryItemView>
 
-                    <MyContentViews:CategoryItemView TitleText="Комплектующие&#10;для пк" Source="pcv2.png" x:Name="item2">
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
-                        </ContentView.GestureRecognizers>
-                    </MyContentViews:CategoryItemView>
+                            <MyContentViews:CategoryItemView TitleText="Комплектующие&#10;для пк" Source="pcv2.png" x:Name="item2">
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                                </ContentView.GestureRecognizers>
+                            </MyContentViews:CategoryItemView>
 
-                    <MyContentViews:CategoryItemView TitleText="Стевое&#10;оборудование" Source="wifirouter.png" x:Name="item3" >
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
-                        </ContentView.GestureRecognizers>
-                    </MyContentViews:CategoryItemView>
+                            <MyContentViews:CategoryItemView TitleText="Стевое&#10;оборудование" Source="wifirouter.png" x:Name="item3" >
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                                </ContentView.GestureRecognizers>
+                            </MyContentViews:CategoryItemView>
 
-                    <MyContentViews:CategoryItemView TitleText="Бытовая технкиа&#10;и приборы" Source="homeappliance.png" x:Name="item4" >
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
-                        </ContentView.GestureRecognizers>
-                    </MyContentViews:CategoryItemView>
-                    <MyContentViews:CategoryItemView TitleText="Канцтовары&#10;и аксессуары" Source="stationery.png" x:Name="item5" >
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
-                        </ContentView.GestureRecognizers>
-                    </MyContentViews:CategoryItemView>
+                            <MyContentViews:CategoryItemView TitleText="Бытовая технкиа&#10;и приборы" Source="homeappliance.png" x:Name="item4" >
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                                </ContentView.GestureRecognizers>
+                            </MyContentViews:CategoryItemView>
+                            <MyContentViews:CategoryItemView TitleText="Канцтовары&#10;и аксессуары" Source="stationery.png" x:Name="item5" >
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewsItem1_Tapped"/>
+                                </ContentView.GestureRecognizers>
+                            </MyContentViews:CategoryItemView>
 
+                        </StackLayout>
+                    </ScrollView>
+                    <CollectionView x:Name="ActionContent" ItemsSource="{Binding ActionViewData}"
+             HeightRequest="200" HorizontalScrollBarVisibility="Never" ItemsLayout="HorizontalList" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <MyContentViews:ActionContentView TitleText="{Binding Name}" ButtonText="Подробнее" IdItem="{Binding ID}" 
+                                           NewPrice="{Binding Price,Converter={Converters:PriceConverter},ConverterParameter='₽'}"
+                                                                  OldPrice="{Binding OldPrice,Converter={Converters:PriceConverter},ConverterParameter='₽'}"
+                                                                  Describe="{Binding Description}" ImageSource="{Binding Icon}"  />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Load Page" Command="{Binding LoadPageCommand}"/>
                 </StackLayout>
+
             </ScrollView>
-            <CollectionView x:Name="ActionContent" ItemsSource="{Binding ActionViewData}"
-                            HeightRequest="200" HorizontalScrollBarVisibility="Never" ItemsLayout="HorizontalList" >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <MyContentViews:ActionContentView TitleText="{Binding Name}" ButtonText="Подробнее" IdItem="{Binding ID}" 
-                                                          NewPrice="{Binding Price}" OldPrice="{Binding OldPrice}" Describe="{Binding Description}" ImageSource="{Binding Icon}"  />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Text="Load Page" Command="{Binding LoadPageCommand}"/>
-        </StackLayout>  
+        </RefreshView>
+        
     </ContentPage.Content>
 </ContentPage>

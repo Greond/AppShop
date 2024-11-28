@@ -24,11 +24,19 @@
             <Color x:Key="LightThemeBackGColor">#E0E0E0</Color>
             <Color x:Key="LightThemeBackGColor2">#D3D3D3</Color>
 
+            <Color x:Key="FrameBorderColor" >#6D6D6D</Color>
+            <Color x:Key="FrameBorderColor2" >#C7C6C6</Color>
+            <Color x:Key="DarkBorderColor">#565656</Color>
 
             <Style TargetType="Page" ApplyToDerivedTypes="True" >
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor},Dark={StaticResource DarkThemeBackGColor}} "/>
             </Style>
 
+            <Style TargetType="RefreshView" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackGColor2},Dark={StaticResource DarkThemeBackGColor2}}"/>
+                <Setter Property="RefreshColor" Value="{AppThemeBinding Light={StaticResource LightThemeTextColor2},Dark={StaticResource DarkThemeTextColor2}}" />
+            </Style>
+            
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeTextColor},Dark={StaticResource DarkThemeTextColor}}"/>
             </Style>

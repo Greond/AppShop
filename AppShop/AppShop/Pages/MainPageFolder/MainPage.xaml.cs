@@ -23,7 +23,6 @@ namespace AppShop.Pages
 
             ViewModel = new MainPageFolder.MainPageViewModel();
             BindingContext = ViewModel;
-            ViewModel.LoadPageCommand.Execute(this);
 
         }
         protected override async void OnAppearing()

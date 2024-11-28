@@ -38,21 +38,37 @@ namespace AppShop.Pages.SearchPageFolder
                     (_LoadPageCommand = new MvvmHelpers.Commands.Command(async () =>
                     {
                         Task task = LoadData();
-                        if (task.IsCompleted)
+                        if (task.Status == TaskStatus.RanToCompletion)
                         {
                             await App.Current.MainPage.DisplayAlert("загрузка страницы", "Успешно", "Ок");
                         }
                     }));
             }
         }
+        private bool _IsRefreshing;
+        public bool IsRefreshing 
+        {
+            get { return _IsRefreshing; }
+            set { _IsRefreshing = value; 
+                OnPropertyChanged(nameof(IsRefreshing)); }
+        }
         private async Task LoadData()
         {
-            var Data = await WebApiConnector.GetItemsCategories();
-            if (Data != null)
+            IsRefreshing = true;
+            try
             {
+                var Data = await WebApiConnector.GetItemsCategories();
                 Categories = Data;
+                await App.Current.MainPage.DisplayAlert("загрузка страницы", "Успешно", "Ок");
             }
-
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("загрузка страницы", $"{ex.Message}", "Ок");
+            }
+            finally
+            {
+              IsRefreshing = false;
+            }
         }
     }
 }

@@ -29,13 +29,15 @@
                     <SearchBar  Placeholder="Поиск по катологу" Grid.Column="0" Grid.ColumnSpan="1"  PlaceholderColor="{AppThemeBinding Dark=#ACACAC, Light=#737373}" >
                     </SearchBar>
                 </Frame>
-                <CollectionView ItemsSource="{Binding Categories}" HeightRequest="500">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ContentView:CategoryItemView TitleText="{Binding Name}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <RefreshView Command="{Binding LoadPageCommand}" IsRefreshing="{Binding IsRefreshing}">
+                    <CollectionView ItemsSource="{Binding Categories}" HeightRequest="500">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView:CategoryItemView TitleText="{Binding Name}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -25,8 +25,7 @@ namespace AppShop.DataBase
         {
             if (!WiFiConnection()) // Проверка на Wi-Fi подключение
             {
-                Exception ex = new Exception();
-                return null;
+                throw new Exception("Неверное подключение к интернету. Требуеться домашная Wi-Fi");
             }
             string url = BaseUrl + "/Items" + $"/{ID}";
             Item item = new Item();
@@ -47,23 +46,18 @@ namespace AppShop.DataBase
                 JObject obj = JObject.Parse(content);
                 item = JsonConvert.DeserializeObject<Item>(obj.ToString());
 
-
-                NavigationHelper.DisplayAlert("Получение данных из ДБ", $"Успешно!!!! " +
-                    $"\n \t ", "урА!!");
                 return item;
             }
             catch (Exception ex)
             {
-                NavigationHelper.DisplayAlert("Получение данных из ДБ вышло с ошибкой", $"{ex}", "ok");
-                return null;
+                throw new Exception(ex.Message);
             }
         }
-        public static async  Task<List<Item>> GetItemsFromWebApi(string? propertyName, string? propertyValue ,int? ItemsCount)
+        public static async Task<List<Item>> GetItemsFromWebApi(string? propertyName, string? propertyValue ,int? ItemsCount)
         {
             if(!WiFiConnection()) // Проверка на Wi-Fi подключение
             {
-                Exception ex = new Exception();
-                return null; 
+                throw new Exception("Неверное подключение к интернету. Требуеться домашная Wi-Fi");
             }
             string url = BaseUrl + "/Items";
             List<Item> items = new List<Item>();
@@ -96,23 +90,19 @@ namespace AppShop.DataBase
                     Item rcvdData = JsonConvert.DeserializeObject<Item>(item.ToString());
                     items.Add(rcvdData);
                 }
-
-                NavigationHelper.DisplayAlert("Получение данных из ДБ", $"Успешно!!!! " +
-                    $"\n \t ", "урА!!");
+                //seccuses
                 return items;
             }
             catch (Exception ex)
             {
-                NavigationHelper.DisplayAlert("Получение данных из ДБ вышло с ошибкой", $"{ex}", "ok");
-                return null;
+                throw new Exception(ex.Message);
             }
         }
         public static async Task<List<ItemCategory>> GetItemsCategories()
         {
             if (!WiFiConnection()) // Проверка на Wi-Fi подключение
             {
-                Exception ex = new Exception();
-                return null;
+                throw new Exception("Неверное подключение к интернету. Требуеться домашная Wi-Fi");
             }
             string url = BaseUrl + "/Items/Categories";
             List<ItemCategory> Categories = new List<ItemCategory>();
@@ -136,15 +126,11 @@ namespace AppShop.DataBase
                     ItemCategory rcvdData = JsonConvert.DeserializeObject<ItemCategory>(category.ToString());
                     Categories.Add(rcvdData);
                 }
-
-                NavigationHelper.DisplayAlert("Получение данных из ДБ", $"Успешно!!!! " +
-                    $"\n \t ", "урА!!");
                 return Categories;
             }
             catch (Exception ex)
             {
-                NavigationHelper.DisplayAlert("Получение данных из ДБ вышло с ошибкой", $"{ex}", "ok");
-                return null;
+                throw new Exception(ex.Message);
             }
         }
         public static bool WiFiConnection()

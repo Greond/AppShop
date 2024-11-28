@@ -15,6 +15,7 @@ using System.Linq;
 using AppShop.DataBase;
 using System.ComponentModel;
 using Xamarin.Essentials;
+using SQLitePCL;
 
 namespace AppShop.Pages.MainPageFolder
 {
@@ -23,7 +24,7 @@ namespace AppShop.Pages.MainPageFolder
 
         public MainPageViewModel()
         {
-            
+            LoadPageCommand.Execute(this); // Load  data
         }
         private IEnumerable<Item> _ActionViewData;  
         public  IEnumerable<Item> ActionViewData
@@ -57,27 +58,41 @@ namespace AppShop.Pages.MainPageFolder
             get
             {
                 return _LoadPageCommand ??
-                    (_LoadPageCommand = new MvvmHelpers.Commands.Command( async () =>
+                    (_LoadPageCommand = new MvvmHelpers.Commands.Command(() =>
                     {
                         Task task = LoadData();
-                        if (task.IsCompleted)
-                        {
-                            await App.Current.MainPage.DisplayAlert("загрузка страницы", "Успешно", "Ок");
-                        }
                     }));
             }
         }
-       
-        private async Task LoadData()
-        {
-            var Data = await WebApiConnector.GetItemsFromWebApi("Stock", "true",10);
-            if(Data != null)
+        private bool _IsRefreshing;
+        public bool IsRefreshing { 
+            get
             {
-                ActionViewData = Data;
+                return _IsRefreshing;
             }
-
-                
-            
+             set
+            {
+                _IsRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        private async Task LoadData() // load data to page
+        {
+            IsRefreshing = true;
+            try
+            {
+                var Data = await WebApiConnector.GetItemsFromWebApi("Stock", "true", 10);
+                ActionViewData = Data;
+                await App.Current.MainPage.DisplayAlert("загрузка страницы", "Успешно", "Ок");
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("загрузка страницы", $"{ex.Message}", "Ок");
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
     }
 }
