@@ -6,11 +6,11 @@
              >
   <ContentView.Content >
       
-        <Frame Style="{StaticResource ThemeElementStyle}" Margin="5,5,5,5" CornerRadius="20" BindingContext="{x:Reference this}"  >
+        <Frame Style="{StaticResource ThemeElementStyle}" Margin="5,5,5,5" CornerRadius="20"   >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -19,15 +19,16 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label  x:Name="LabelTitle" Margin="5,0,0,0" FontAttributes="Bold" WidthRequest="210" FontSize="17" Grid.Column="0" Grid.ColumnSpan="2" MaxLines="1"  Grid.Row="0"/>
+                <Label  x:Name="LabelTitle" Margin="5,0,0,0" FontAttributes="Bold" WidthRequest="210" FontSize="17" Grid.Column="0" Grid.ColumnSpan="3" MaxLines="1"  Grid.Row="0"/>
                 <Label  x:Name="LabelDescription" Margin="5,0,0,0"  MaxLines="2" WidthRequest="250" FontSize="14" Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="1"/>
-                <StackLayout Margin="5,0,0,0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" >
+                <StackLayout Margin="5,0,0,0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" BackgroundColor="AliceBlue" >
                     <Label  x:Name="LabelNewPrice"  FontSize="18"  HorizontalTextAlignment="End"/>
-                    <Label  x:Name="LabelOldPrice" TextDecorations="Strikethrough" VerticalTextAlignment="End" HorizontalOptions="Start" FontSize="14" />
+                    <Label  x:Name="LabelOldPrice"  TextDecorations="Strikethrough" VerticalTextAlignment="End" HorizontalOptions="Start" FontSize="14" />
                 </StackLayout>
-                <Button x:Name="ActionButton" Clicked="ActionButton_Clicked" Margin="5,0,0,0" Style="{StaticResource ButtonStylev2}"  TextTransform="None" FontSize="16" Grid.Column="0"
+                <Button x:Name="ActionButton" Clicked="ActionButton_Clicked" Margin="5,0,0,0" 
+                        Style="{StaticResource ButtonStylev2}"  TextTransform="None" FontSize="16" Grid.Column="0"
                         Grid.ColumnSpan="2" Grid.Row="3" CornerRadius="20" WidthRequest="130" HeightRequest="50" HorizontalOptions="Start" />
-                <Image x:Name="ActionImage" Margin="5,0,0,0"   Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="3"/>
+                <Image x:Name="ActionImage" Margin="5,0,0,0"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="3" BackgroundColor="Red" />
             </Grid>
         </Frame>
     </ContentView.Content>

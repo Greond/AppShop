@@ -1,9 +1,7 @@
-﻿using MvvmHelpers;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using AppShop.Helpers;
+using MvvmHelpers;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppShop.Pages.SettingPageFolder
@@ -16,6 +14,7 @@ namespace AppShop.Pages.SettingPageFolder
         public ViewModel()
         {
             _PhoneBindingTheme = true;
+            ChangedUrl = Preferences.Get("BaseUrl", "не установленно");
         }
         public bool PhoneBindingTheme
         {
@@ -63,19 +62,30 @@ namespace AppShop.Pages.SettingPageFolder
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
             }
         }
-
-        private ICommand _TryConnectAPI;
-        public ICommand TryConnectAPI
+        private string _changedUrl;
+        public string ChangedUrl
+        {
+            get { return _changedUrl; }
+            set { 
+                _changedUrl = value;
+                OnPropertyChanged(nameof(ChangedUrl));
+            }
+        }
+        private ICommand _saveNewUrl;
+        public ICommand SaveNewUrl
         {
             get
             {
-                return _TryConnectAPI ??
-                    (_TryConnectAPI = new MvvmHelpers.Commands.Command(async (obj) =>
+                return _saveNewUrl ??
+                    (_saveNewUrl = new MvvmHelpers.Commands.Command(async () =>
                     {
-                        if (!_TryConnectAPI.CanExecute(_TryConnectAPI)) { return; }
-                        Entry entry = obj as Entry;
-                        string url = entry.Text.ToString();
-                        DataBase.WebApiConnector.BaseUrl = url;
+                        Preferences.Set("BaseUrl", ChangedUrl);
+                        var result = await App.Current.MainPage.DisplayAlert("Новый url сохранен","Требуется перезагрузка приложеия. \nПерезагрузить сейчас?","Завершить работу","Остаться");
+                        if(result)
+                        {
+                            INativeHelper nativeHelper = new NativeHelper();
+                            nativeHelper.CloseApp();
+                        }
                     }));
             }
         }

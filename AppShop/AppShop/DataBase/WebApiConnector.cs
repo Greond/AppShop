@@ -4,23 +4,17 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using Xamarin.Essentials;
-using AppShop.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection.Emit;
-using static System.Net.WebRequestMethods;
-using System.Dynamic;
-using System.Collections.ObjectModel;
+using MvvmHelpers;
 
 namespace AppShop.DataBase
 {
     public static class WebApiConnector
     {
-        // https://192.168.1.103:7274/api
-        public static string BaseUrl = "https://192.168.1.103:7274/api";
-        //Items 
+        // https://192.168.1.101:7274/api
+         public static string BaseUrl = Preferences.Get("BaseUrl", "https://192.168.1.101:7274/api");
         public static async Task<Item> GetItemById(ulong ID)
         {
             if (!WiFiConnection()) // Проверка на Wi-Fi подключение

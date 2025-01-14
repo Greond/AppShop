@@ -6,6 +6,6 @@ namespace AppShop.Helpers
 {
     interface INativeHelper
     {
-        void CloseApp();
+       public void CloseApp();
     }
 }

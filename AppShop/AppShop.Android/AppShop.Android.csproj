@@ -64,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Load1Animation.json" />
+    <AndroidAsset Include="Assets\Load2Animation.json" />
+    <AndroidAsset Include="Assets\Load3DarkAnimation.json" />
+    <AndroidAsset Include="Assets\Load3LightAnimation.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

@@ -158,8 +158,8 @@
                             <Frame Style="{StaticResource ThemeElementStyle}" >
                                 <StackLayout >
                                     <Label Text="ApiUrl"/>
-                                    <Entry  x:Name="Url" />
-                                    <Button Text="Try connect API" Command="{Binding TryConnectAPI}" CommandParameter="{x:Reference Url}"/>
+                                    <Entry  x:Name="Url" Text="{Binding ChangedUrl}"  Keyboard="Url" />
+                                    <Button Text="Save new url" Command="{Binding SaveNewUrl}" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

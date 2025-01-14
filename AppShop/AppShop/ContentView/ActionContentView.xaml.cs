@@ -2,7 +2,6 @@
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-
 using Xamarin.Forms.Xaml;
 
 namespace AppShop.ContentView
@@ -69,7 +68,10 @@ namespace AppShop.ContentView
         public ImageSource ImageSource
         {
             get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            set {
+                SetValue(ImageSourceProperty, value);
+                OnPropertyChanged(nameof(ImageSource));
+            }
         }
         public static readonly BindableProperty ButtonCommandProperty =
       BindableProperty.Create(

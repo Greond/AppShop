@@ -6,6 +6,7 @@
              x:Class="AppShop.Pages.MainPage"
              xmlns:Local="clr-namespace:AppShop.Pages.MainPageFolder"
              xmlns:Converters="clr-namespace:AppShop.Converters"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              x:Name="page"
             >
     <ContentPage.BindingContext>
@@ -20,7 +21,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding LoadPageCommand}">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding LoadPageCommand}" >
             <ScrollView>
 
                 <StackLayout>
@@ -64,13 +65,37 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <MyContentViews:ActionContentView TitleText="{Binding Name}" ButtonText="Подробнее" IdItem="{Binding ID}" 
-                                           NewPrice="{Binding Price,Converter={Converters:PriceConverter},ConverterParameter='₽'}"
+                                                                  NewPrice="{Binding Price,Converter={Converters:PriceConverter},ConverterParameter='₽'}"
                                                                   OldPrice="{Binding OldPrice,Converter={Converters:PriceConverter},ConverterParameter='₽'}"
                                                                   Describe="{Binding Description}" ImageSource="{Binding Icon}"  />
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <forms:AnimationView
+                                    x:Name="ActionEmptyViewAnimation"
+                                    Animation="{AppThemeBinding Light=Load3DarkAnimation.json,Dark=Load3LightAnimation.json}"
+                                    AnimationSource="AssetOrBundle"
+                                    AutoPlay="True"
+                                    RepeatMode="Infinite"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                />
+                        </CollectionView.EmptyView>
                     </CollectionView>
                     <Button Text="Load Page" Command="{Binding LoadPageCommand}"/>
+
+                    <forms:AnimationView
+                        x:Name="animationView"
+                        Animation="Load3LightAnimation.json"
+                        AnimationSource="AssetOrBundle"
+                        Command="{Binding ClickCommand}" 
+                        AutoPlay="True"
+                        RepeatCount="3"
+                        RepeatMode="Restart"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand" />
+
+
                 </StackLayout>
 
             </ScrollView>
